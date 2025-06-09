@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sipsoft.licoreria.dto.ClienteDTO;
 import com.sipsoft.licoreria.entity.Cliente;
-import com.sipsoft.licoreria.entity.ClienteDTO;
 import com.sipsoft.licoreria.entity.Empresa;
 import com.sipsoft.licoreria.repository.EmpresaRepository;
 import com.sipsoft.licoreria.services.IClienteService;

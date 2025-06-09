@@ -1,9 +1,11 @@
 package com.sipsoft.licoreria.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sipsoft.licoreria.dto.EmpresaDTO;
 import com.sipsoft.licoreria.entity.Empresa;
 import com.sipsoft.licoreria.services.IEmpresaService;
 
@@ -26,16 +29,46 @@ public class EmpresaController {
     public List<Empresa> buscarTodos() {
         return serviceEmpresa.bucarTodos();
     }
+
+    /**
+     * Endpoint para crear una nueva empresa.
+     * @param empresaDto DTO con la información de la empresa a crear.
+     * @return La entidad Empresa creada y guardada.
+     */
     @PostMapping("/empresas")
-    public Empresa guardar(@RequestBody Empresa empresa) {
-        serviceEmpresa.guardar(empresa);
-        return empresa;
+    public Empresa guardar(@RequestBody EmpresaDTO empresaDto) {
+        Empresa empresa = new Empresa();
+        empresa.setNombreEmpresa(empresaDto.getNombreEmpresa());
+        empresa.setRucEmpresa(empresaDto.getRucEmpresa());
+        empresa.setLogoEmpresa(empresaDto.getLogoEmpresa());
+        empresa.setFecharegistroEmpresa(LocalDateTime.now()); // Establece la fecha de registro
+        empresa.setEstadoEmpresa(1); // Establece el estado por defecto
+        return serviceEmpresa.guardar(empresa);
     }
 
+    /**
+     * Endpoint para modificar una empresa existente.
+     * @param empresaDto DTO con los datos a actualizar.
+     * @return La entidad Empresa actualizada o un mensaje de error si no se encuentra.
+     */
     @PutMapping("/empresas")
-    public Empresa modificar(@RequestBody Empresa empresa) {
-        serviceEmpresa.modificar(empresa);
-        return empresa;
+    public ResponseEntity<?> modificar(@RequestBody EmpresaDTO empresaDto) {
+        if (empresaDto.getIdEmpresa() == null) {
+            return ResponseEntity.badRequest().body("El idEmpresa es requerido para modificar.");
+        }
+        
+        Optional<Empresa> empresaOpt = serviceEmpresa.buscarId(empresaDto.getIdEmpresa());
+        if (empresaOpt.isEmpty()) {
+            return ResponseEntity.badRequest().body("No se encontró la empresa con ID: " + empresaDto.getIdEmpresa());
+        }
+
+        Empresa empresaExistente = empresaOpt.get();
+        empresaExistente.setNombreEmpresa(empresaDto.getNombreEmpresa());
+        empresaExistente.setRucEmpresa(empresaDto.getRucEmpresa());
+        empresaExistente.setLogoEmpresa(empresaDto.getLogoEmpresa());
+        
+        Empresa empresaModificada = serviceEmpresa.modificar(empresaExistente);
+        return ResponseEntity.ok(empresaModificada);
     }
 
     @GetMapping("/empresas/{idEmpresa}")
