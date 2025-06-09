@@ -7,8 +7,8 @@ import com.sipsoft.licoreria.entity.Permiso;
 
 public interface IPermisoService {
     List<Permiso> bucarTodos();
-    void guardar(Permiso permiso);
-    void modificar(Permiso permiso);
+    Permiso guardar(Permiso permiso);
+    Permiso modificar(Permiso permiso);
     Optional<Permiso> buscarId(Integer idPermiso);
     void eliminar(Integer idPermiso);
 }
