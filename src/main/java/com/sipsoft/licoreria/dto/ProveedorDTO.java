@@ -1,26 +1,8 @@
-package com.sipsoft.licoreria.entity;
+package com.sipsoft.licoreria.dto;
 
 import java.time.LocalDate;
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 
-@Entity
-@Table(name = "proveedor")
-@SQLDelete(sql = "UPDATE proveedor SET estadoProveedor = 0 WHERE idProveedor = ?")
-@Where(clause = "estadoProveedor = 1")
-public class Proveedor {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ProveedorDTO {
     private Integer idProveedor;
     private String rucProveedor;
     private String nombreProveedor;
@@ -28,24 +10,11 @@ public class Proveedor {
     private String emailProveedor;
     private String logoProveedor;
     private String direccionProveedor;
-    private Integer estadoProveedor = 1;
+    private Integer estadoProveedor;
     private String telefonoFijoProveedor;
     private String numeroContactoProveedor;
     private LocalDate fechaRegistroProveedor;
     private Integer idEmpresa;
-
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idEmpresa", insertable = false, updatable = false)
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Empresa empresa;
-
-    public Proveedor() {
-    }
-    
-    public Proveedor(Integer id){
-        this.idProveedor = id;
-    }
 
     // Getters y Setters
     public Integer getIdProveedor() {
@@ -114,27 +83,10 @@ public class Proveedor {
     public void setFechaRegistroProveedor(LocalDate fechaRegistroProveedor) {
         this.fechaRegistroProveedor = fechaRegistroProveedor;
     }
-    public Empresa getEmpresa() {
-        return empresa;
-    }
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
-    }
-
     public Integer getIdEmpresa() {
         return idEmpresa;
     }
     public void setIdEmpresa(Integer idEmpresa) {
         this.idEmpresa = idEmpresa;
-    }
-
-    @Override
-    public String toString() {
-        return "Proveedor [idProveedor=" + idProveedor + ", rucProveedor=" + rucProveedor + ", nombreProveedor="
-                + nombreProveedor + ", telefonoMovilProveedor=" + telefonoMovilProveedor + ", emailProveedor="
-                + emailProveedor + ", logoProveedor=" + logoProveedor + ", direccionProveedor=" + direccionProveedor
-                + ", estadoProveedor=" + estadoProveedor + ", telefonoFijoProveedor=" + telefonoFijoProveedor
-                + ", numeroContactoProveedor=" + numeroContactoProveedor + ", fechaRegistroProveedor="
-                + fechaRegistroProveedor + ", idEmpresa=" + idEmpresa + "]";
     }
 }
