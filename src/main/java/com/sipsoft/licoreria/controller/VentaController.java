@@ -15,19 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sipsoft.licoreria.entity.Venta;
 import com.sipsoft.licoreria.dto.VentaDTO;
-import com.sipsoft.licoreria.dto.DetalleVentaDTO;
-import com.sipsoft.licoreria.entity.DetalleVenta;
-import com.sipsoft.licoreria.entity.Lote;
 import com.sipsoft.licoreria.entity.Cliente;
 import com.sipsoft.licoreria.entity.Caja;
 import com.sipsoft.licoreria.entity.Transaccion;
 import com.sipsoft.licoreria.entity.Usuario;
-import com.sipsoft.licoreria.repository.LoteRepository;
 import com.sipsoft.licoreria.repository.ClienteRepository;
 import com.sipsoft.licoreria.repository.CajaRepository;
 import com.sipsoft.licoreria.repository.TransaccionRepository;
 import com.sipsoft.licoreria.repository.UsuarioRepository;
-import com.sipsoft.licoreria.repository.DetalleVentaRepository;
 import com.sipsoft.licoreria.services.IVentaService;
 
 @RestController
@@ -37,8 +32,6 @@ public class VentaController {
     private IVentaService serviceVenta;
 
     @Autowired
-    private LoteRepository repoLote;
-    @Autowired
     private ClienteRepository repoCliente;
     @Autowired
     private CajaRepository repoCaja;
@@ -46,8 +39,7 @@ public class VentaController {
     private TransaccionRepository repoTransaccion;
     @Autowired
     private UsuarioRepository repoUsuario;
-    @Autowired
-    private DetalleVentaRepository repoDetalleVenta;
+
 
     @GetMapping("/ventas")
     public List<Venta> buscarTodos() {
@@ -75,28 +67,7 @@ public class VentaController {
 
         serviceVenta.guardar(venta);
 
-        // Guardar detalles y actualizar stock
-        if (dto.getDetalles() != null) {
-            for (DetalleVentaDTO det : dto.getDetalles()) {
-                DetalleVenta detalle = new DetalleVenta();
-                detalle.setPrecioUnitario(det.getPrecioUnitario());
-                detalle.setDescuentoVenta(det.getDescuentoVenta());
-                detalle.setCantidadVenta(det.getCantidadVenta());
-                detalle.setSubtotalVenta(det.getSubtotalVenta());
-                detalle.setEstadoDetalleVenta(det.getEstadoDetalleVenta());
-                detalle.setTipoDescuento(det.getTipoDescuento());
-                detalle.setVenta(venta);
-                Lote lote = repoLote.findById(det.getIdLote()).orElse(null);
-                detalle.setLote(lote);
-                repoDetalleVenta.save(detalle);
-                // Actualizar stock del lote
-                if (lote != null && det.getCantidadVenta() != null) {
-                    int nuevoStock = (lote.getStockActual() != null ? lote.getStockActual() : 0) - det.getCantidadVenta();
-                    lote.setStockActual(nuevoStock);
-                    repoLote.save(lote);
-                }
-            }
-        }
+        // Ya no se guarda detalle ni se actualiza stock aquí
         return venta;
     }
 
@@ -123,29 +94,6 @@ public class VentaController {
 
         serviceVenta.modificar(venta);
 
-        // Actualizar detalles y stock si se envían detalles
-        if (dto.getDetalles() != null) {
-            for (DetalleVentaDTO det : dto.getDetalles()) {
-                DetalleVenta detalle = new DetalleVenta();
-                detalle.setIdDetalleVenta(det.getIdDetalleVenta());
-                detalle.setPrecioUnitario(det.getPrecioUnitario());
-                detalle.setDescuentoVenta(det.getDescuentoVenta());
-                detalle.setCantidadVenta(det.getCantidadVenta());
-                detalle.setSubtotalVenta(det.getSubtotalVenta());
-                detalle.setEstadoDetalleVenta(det.getEstadoDetalleVenta());
-                detalle.setTipoDescuento(det.getTipoDescuento());
-                detalle.setVenta(venta);
-                Lote lote = repoLote.findById(det.getIdLote()).orElse(null);
-                detalle.setLote(lote);
-                repoDetalleVenta.save(detalle);
-                // Actualizar stock del lote
-                if (lote != null && det.getCantidadVenta() != null) {
-                    int nuevoStock = (lote.getStockActual() != null ? lote.getStockActual() : 0) - det.getCantidadVenta();
-                    lote.setStockActual(nuevoStock);
-                    repoLote.save(lote);
-                }
-            }
-        }
         return venta;
     }
 

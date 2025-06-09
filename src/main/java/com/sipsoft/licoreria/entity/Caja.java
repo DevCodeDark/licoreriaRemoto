@@ -46,6 +46,10 @@ public class Caja {
     // --- Getters y Setters ---
     public Caja() {}
 
+    public Caja(Integer id) {
+        this.idCaja = id;
+    }
+
     public Integer getIdCaja() {
         return idCaja;
     }

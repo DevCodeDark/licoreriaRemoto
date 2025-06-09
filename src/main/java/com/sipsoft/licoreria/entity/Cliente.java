@@ -39,6 +39,13 @@ public class Cliente {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Empresa idEmpresa;
 
+    public Cliente() {
+    }
+
+    public Cliente(Integer id) {
+        this.idCliente = id;
+    }
+
     public Integer getIdCliente() {
         return idCliente;
     }
@@ -144,8 +151,4 @@ public class Cliente {
                 + montoTotalComprado + ", estadoCliente=" + estadoCliente + ", nombreRazonSocial=" + nombreRazonSocial
                 + ", tipoCliente=" + tipoCliente + ", idEmpresa=" + idEmpresa + "]";
     }
-
-    
-
-    
 }
