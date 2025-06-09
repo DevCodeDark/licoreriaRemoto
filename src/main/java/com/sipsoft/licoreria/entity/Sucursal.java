@@ -24,13 +24,17 @@ public class Sucursal {
     private Integer idSucursal;
     private String ubicacionSucursal;
     private Integer estadoSucursal = 1;
-
+    
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idEmpresa", insertable = false, updatable = false)
+    @JoinColumn(name = "idEmpresa")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Empresa empresa;
+    private Empresa idEmpresa;
 
     public Sucursal() {
+    }
+
+    public Sucursal (Integer id){
+        this.idSucursal=id;
     }
 
     public Integer getIdSucursal() {
@@ -57,17 +61,19 @@ public class Sucursal {
         this.estadoSucursal = estadoSucursal;
     }
 
-    public Empresa getEmpresa() {
-        return empresa;
+    public Empresa getIdEmpresa() {
+        return idEmpresa;
     }
 
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
+    public void setIdEmpresa(Empresa idEmpresa) {
+        this.idEmpresa = idEmpresa;
     }
 
     @Override
     public String toString() {
         return "Sucursal [idSucursal=" + idSucursal + ", ubicacionSucursal=" + ubicacionSucursal + ", estadoSucursal="
-                + estadoSucursal + ", empresa=" + empresa + "]";
+                + estadoSucursal + ", idEmpresa=" + idEmpresa + "]";
     }
+
+    
 }

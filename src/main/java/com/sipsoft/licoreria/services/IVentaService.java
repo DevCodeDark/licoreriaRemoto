@@ -7,8 +7,8 @@ import com.sipsoft.licoreria.entity.Venta;
 
 public interface IVentaService {
     List<Venta> bucarTodos();
-    void guardar(Venta venta);
-    void modificar(Venta venta);
+    Venta guardar(Venta venta);
+    Venta modificar(Venta venta);
     Optional<Venta> buscarId(Integer idVenta);
     void eliminar(Integer idVenta);
 }

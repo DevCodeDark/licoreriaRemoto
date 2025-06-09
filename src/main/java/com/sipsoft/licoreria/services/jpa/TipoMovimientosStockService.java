@@ -19,12 +19,12 @@ public class TipoMovimientosStockService implements ITipoMovimientosStockService
         return repoTipoMovimientosStock.findAll();
     }
     
-    public void guardar(TipoMovimientosStock tipoMovimientosStock) {
-        repoTipoMovimientosStock.save(tipoMovimientosStock);
+    public TipoMovimientosStock guardar(TipoMovimientosStock tipoMovimientosStock) {
+        return repoTipoMovimientosStock.save(tipoMovimientosStock);
     }
     
-    public void modificar(TipoMovimientosStock tipoMovimientosStock) {
-        repoTipoMovimientosStock.save(tipoMovimientosStock);
+    public TipoMovimientosStock modificar(TipoMovimientosStock tipoMovimientosStock) {
+        return repoTipoMovimientosStock.save(tipoMovimientosStock);
     }
     
     public Optional<TipoMovimientosStock> buscarId(Integer idTipoMovimiento) {

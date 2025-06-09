@@ -31,19 +31,19 @@ public class Transaccion {
     private LocalDateTime fechaTransaccion;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idTipoPago", insertable = false, updatable = false)
+    @JoinColumn(name = "idTipoPago")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private TipoPago tipoPago;
+    private TipoPago idTipoPago;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idUsuario", insertable = false, updatable = false)
+    @JoinColumn(name = "idUsuario")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Usuario usuario;
+    private Usuario idUsuario;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idCaja", insertable = false, updatable = false)
+    @JoinColumn(name = "idCaja")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Caja caja;
+    private Caja idCaja;
 
     public Transaccion() {
     }
@@ -96,35 +96,37 @@ public class Transaccion {
         this.fechaTransaccion = fechaTransaccion;
     }
 
-    public TipoPago getTipoPago() {
-        return tipoPago;
+    public TipoPago getIdTipoPago() {
+        return idTipoPago;
     }
 
-    public void setTipoPago(TipoPago tipoPago) {
-        this.tipoPago = tipoPago;
+    public void setIdTipoPago(TipoPago idTipoPago) {
+        this.idTipoPago = idTipoPago;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Usuario getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(Usuario idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public Caja getCaja() {
-        return caja;
+    public Caja getIdCaja() {
+        return idCaja;
     }
 
-    public void setCaja(Caja caja) {
-        this.caja = caja;
+    public void setIdCaja(Caja idCaja) {
+        this.idCaja = idCaja;
     }
 
     @Override
     public String toString() {
         return "Transaccion [idTransaccion=" + idTransaccion + ", motivoTransaccion=" + motivoTransaccion
                 + ", montoTransaccion=" + montoTransaccion + ", tipo=" + tipo + ", estado=" + estado
-                + ", fechaTransaccion=" + fechaTransaccion + ", tipoPago=" + tipoPago + ", usuario=" + usuario
-                + ", caja=" + caja + "]";
+                + ", fechaTransaccion=" + fechaTransaccion + ", idTipoPago=" + idTipoPago + ", idUsuario=" + idUsuario
+                + ", idCaja=" + idCaja + "]";
     }
+
+    
 }

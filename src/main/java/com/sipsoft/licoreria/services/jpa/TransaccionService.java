@@ -19,12 +19,12 @@ public class TransaccionService implements ITransaccionService {
         return repoTransaccion.findAll();
     }
     
-    public void guardar(Transaccion transaccion) {
-        repoTransaccion.save(transaccion);
+    public Transaccion guardar(Transaccion transaccion) {
+        return repoTransaccion.save(transaccion);
     }
     
-    public void modificar(Transaccion transaccion) {
-        repoTransaccion.save(transaccion);
+    public Transaccion modificar(Transaccion transaccion) {
+        return repoTransaccion.save(transaccion);
     }
     
     public Optional<Transaccion> buscarId(Integer idTransaccion) {

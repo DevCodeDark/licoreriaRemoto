@@ -19,12 +19,12 @@ public class ClienteService implements IClienteService {
         return repoCliente.findAll();
     }
     
-    public void guardar(Cliente cliente) {
-        repoCliente.save(cliente);
+    public Cliente guardar(Cliente cliente) {
+        return repoCliente.save(cliente);
     }
     
-    public void modificar(Cliente cliente) {
-        repoCliente.save(cliente);
+    public Cliente modificar(Cliente cliente) {
+        return repoCliente.save(cliente);
     }
     
     public Optional<Cliente> buscarId(Integer idCliente) {

@@ -28,14 +28,14 @@ public class Traslado {
     private Integer estadoTraslado = 1;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idAlmacenOrigen", insertable = false, updatable = false)
+    @JoinColumn(name = "idAlmacenOrigen")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Almacen almacenOrigen;
+    private Almacen idAlmacenOrigen;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idAlmacenDestino", insertable = false, updatable = false)
+    @JoinColumn(name = "idAlmacenDestino")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Almacen almacenDestino;
+    private Almacen idAlmacenDestino;
 
     public Traslado() {
     }
@@ -64,25 +64,26 @@ public class Traslado {
         this.estadoTraslado = estadoTraslado;
     }
 
-    public Almacen getAlmacenOrigen() {
-        return almacenOrigen;
+    public Almacen getIdAlmacenOrigen() {
+        return idAlmacenOrigen;
     }
 
-    public void setAlmacenOrigen(Almacen almacenOrigen) {
-        this.almacenOrigen = almacenOrigen;
+    public void setIdAlmacenOrigen(Almacen idAlmacenOrigen) {
+        this.idAlmacenOrigen = idAlmacenOrigen;
     }
 
-    public Almacen getAlmacenDestino() {
-        return almacenDestino;
+    public Almacen getIdAlmacenDestino() {
+        return idAlmacenDestino;
     }
 
-    public void setAlmacenDestino(Almacen almacenDestino) {
-        this.almacenDestino = almacenDestino;
+    public void setIdAlmacenDestino(Almacen idAlmacenDestino) {
+        this.idAlmacenDestino = idAlmacenDestino;
     }
 
     @Override
     public String toString() {
         return "Traslado [idTraslado=" + idTraslado + ", fechaTraslado=" + fechaTraslado + ", estadoTraslado="
-                + estadoTraslado + ", almacenOrigen=" + almacenOrigen + ", almacenDestino=" + almacenDestino + "]";
+                + estadoTraslado + ", idAlmacenOrigen=" + idAlmacenOrigen + ", idAlmacenDestino=" + idAlmacenDestino
+                + "]";
     }
 }

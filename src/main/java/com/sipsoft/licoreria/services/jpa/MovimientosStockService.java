@@ -19,12 +19,12 @@ public class MovimientosStockService implements IMovimientosStockService {
         return repoMovimientosStock.findAll();
     }
     
-    public void guardar(MovimientosStock movimientosStock) {
-        repoMovimientosStock.save(movimientosStock);
+    public MovimientosStock guardar(MovimientosStock movimientosStock) {
+        return repoMovimientosStock.save(movimientosStock);
     }
     
-    public void modificar(MovimientosStock movimientosStock) {
-        repoMovimientosStock.save(movimientosStock);
+    public MovimientosStock modificar(MovimientosStock movimientosStock) {
+        return repoMovimientosStock.save(movimientosStock);
     }
     
     public Optional<MovimientosStock> buscarId(Integer idMovimientoStock) {

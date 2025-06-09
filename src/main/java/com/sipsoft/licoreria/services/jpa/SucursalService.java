@@ -19,12 +19,12 @@ public class SucursalService implements ISucursalService {
         return repoSucursal.findAll();
     }
     
-    public void guardar(Sucursal sucursal) {
-        repoSucursal.save(sucursal);
+    public Sucursal guardar(Sucursal sucursal) {
+        return repoSucursal.save(sucursal);
     }
     
-    public void modificar(Sucursal sucursal) {
-        repoSucursal.save(sucursal);
+    public Sucursal modificar(Sucursal sucursal) {
+        return repoSucursal.save(sucursal);
     }
     
     public Optional<Sucursal> buscarId(Integer idSucursal) {

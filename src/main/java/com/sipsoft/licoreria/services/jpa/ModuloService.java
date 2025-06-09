@@ -19,12 +19,12 @@ public class ModuloService implements IModuloService {
         return repoModulo.findAll();
     }
     
-    public void guardar(Modulo modulo) {
-        repoModulo.save(modulo);
+    public Modulo guardar(Modulo modulo) {
+        return repoModulo.save(modulo);
     }
     
-    public void modificar(Modulo modulo) {
-        repoModulo.save(modulo);
+    public Modulo modificar(Modulo modulo) {
+        return repoModulo.save(modulo);
     }
     
     public Optional<Modulo> buscarId(Integer idModulo) {

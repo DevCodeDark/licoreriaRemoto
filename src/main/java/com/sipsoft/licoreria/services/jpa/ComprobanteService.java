@@ -2,10 +2,8 @@ package com.sipsoft.licoreria.services.jpa;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.sipsoft.licoreria.entity.Comprobante;
 import com.sipsoft.licoreria.repository.ComprobanteRepository;
 import com.sipsoft.licoreria.services.IComprobanteService;
@@ -19,12 +17,12 @@ public class ComprobanteService implements IComprobanteService {
         return repoComprobante.findAll();
     }
     
-    public void guardar(Comprobante comprobante) {
-        repoComprobante.save(comprobante);
+    public Comprobante guardar(Comprobante comprobante) {
+        return repoComprobante.save(comprobante);
     }
     
-    public void modificar(Comprobante comprobante) {
-        repoComprobante.save(comprobante);
+    public Comprobante modificar(Comprobante comprobante) {
+        return repoComprobante.save(comprobante);
     }
     
     public Optional<Comprobante> buscarId(Integer idComprobante) {

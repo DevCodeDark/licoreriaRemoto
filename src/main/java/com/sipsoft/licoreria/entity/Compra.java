@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
@@ -34,26 +35,36 @@ public class Compra {
     private Boolean activo;
     private LocalDateTime fechaActualizacion;
     private LocalDateTime fechaRegistro;
+    private Integer idProveedor;
+    private Integer idOrden;
+    private Integer idEmpresa;
+    private Integer idTipoPago;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idProveedor", insertable = false, updatable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Proveedor proveedor;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idOrden", insertable = false, updatable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private OrdenCompra ordenCompra;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idEmpresa", insertable = false, updatable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Empresa empresa;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idTipoPago", insertable = false, updatable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private TipoPago tipoPago;
+
+    // --- Getters y Setters ---
 
     public Compra() {
     }
@@ -138,6 +149,38 @@ public class Compra {
         this.fechaRegistro = fechaRegistro;
     }
 
+    public Integer getIdProveedor() {
+        return idProveedor;
+    }
+
+    public void setIdProveedor(Integer idProveedor) {
+        this.idProveedor = idProveedor;
+    }
+
+    public Integer getIdOrden() {
+        return idOrden;
+    }
+
+    public void setIdOrden(Integer idOrden) {
+        this.idOrden = idOrden;
+    }
+
+    public Integer getIdEmpresa() {
+        return idEmpresa;
+    }
+
+    public void setIdEmpresa(Integer idEmpresa) {
+        this.idEmpresa = idEmpresa;
+    }
+
+    public Integer getIdTipoPago() {
+        return idTipoPago;
+    }
+
+    public void setIdTipoPago(Integer idTipoPago) {
+        this.idTipoPago = idTipoPago;
+    }
+
     public Proveedor getProveedor() {
         return proveedor;
     }
@@ -168,14 +211,5 @@ public class Compra {
 
     public void setTipoPago(TipoPago tipoPago) {
         this.tipoPago = tipoPago;
-    }
-
-    @Override
-    public String toString() {
-        return "Compra [idCompra=" + idCompra + ", guiaRemisionCompra=" + guiaRemisionCompra + ", precioTotalCompra="
-                + precioTotalCompra + ", fechaCompra=" + fechaCompra + ", igv=" + igv + ", estadoCompra=" + estadoCompra
-                + ", tipoCompra=" + tipoCompra + ", activo=" + activo + ", fechaActualizacion=" + fechaActualizacion
-                + ", fechaRegistro=" + fechaRegistro + ", proveedor=" + proveedor + ", ordenCompra=" + ordenCompra
-                + ", empresa=" + empresa + ", tipoPago=" + tipoPago + "]";
     }
 }

@@ -19,12 +19,12 @@ public class PagosDeudaService implements IPagosDeudaService {
         return repoPagosDeuda.findAll();
     }
     
-    public void guardar(PagosDeuda pagosDeuda) {
-        repoPagosDeuda.save(pagosDeuda);
+    public PagosDeuda guardar(PagosDeuda pagosDeuda) {
+        return repoPagosDeuda.save(pagosDeuda);
     }
     
-    public void modificar(PagosDeuda pagosDeuda) {
-        repoPagosDeuda.save(pagosDeuda);
+    public PagosDeuda modificar(PagosDeuda pagosDeuda) {
+        return repoPagosDeuda.save(pagosDeuda);
     }
     
     public Optional<PagosDeuda> buscarId(Integer idPagosDeuda) {

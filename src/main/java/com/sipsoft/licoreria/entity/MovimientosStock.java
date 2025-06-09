@@ -23,17 +23,14 @@ public class MovimientosStock {
     private LocalDateTime fechaMovimientoStock;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idLote", insertable = false, updatable = false)
+    @JoinColumn(name = "idLote")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Lote lote;
+    private Lote idLote;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idTipoMovimiento", insertable = false, updatable = false)
+    @JoinColumn(name = "idTipoMovimiento")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private TipoMovimientosStock tipoMovimiento;
-
-    public MovimientosStock() {
-    }
+    private TipoMovimientosStock idTipoMovimiento;
 
     public Integer getIdMovimientoStock() {
         return idMovimientoStock;
@@ -59,26 +56,28 @@ public class MovimientosStock {
         this.fechaMovimientoStock = fechaMovimientoStock;
     }
 
-    public Lote getLote() {
-        return lote;
+    public Lote getIdLote() {
+        return idLote;
     }
 
-    public void setLote(Lote lote) {
-        this.lote = lote;
+    public void setIdLote(Lote idLote) {
+        this.idLote = idLote;
     }
 
-    public TipoMovimientosStock getTipoMovimiento() {
-        return tipoMovimiento;
+    public TipoMovimientosStock getIdTipoMovimiento() {
+        return idTipoMovimiento;
     }
 
-    public void setTipoMovimiento(TipoMovimientosStock tipoMovimiento) {
-        this.tipoMovimiento = tipoMovimiento;
+    public void setIdTipoMovimiento(TipoMovimientosStock idTipoMovimiento) {
+        this.idTipoMovimiento = idTipoMovimiento;
     }
 
     @Override
     public String toString() {
         return "MovimientosStock [idMovimientoStock=" + idMovimientoStock + ", cantidadMovimientoStock="
-                + cantidadMovimientoStock + ", fechaMovimientoStock=" + fechaMovimientoStock + ", lote=" + lote
-                + ", tipoMovimiento=" + tipoMovimiento + "]";
+                + cantidadMovimientoStock + ", fechaMovimientoStock=" + fechaMovimientoStock + ", idLote=" + idLote
+                + ", idTipoMovimiento=" + idTipoMovimiento + "]";
     }
+
+     
 }

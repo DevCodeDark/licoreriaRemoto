@@ -9,7 +9,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
 @Entity
@@ -29,6 +28,10 @@ public class Empresa {
 
     public Empresa() {
     }
+
+    public Empresa(Integer id){
+        this.idEmpresa = id;
+    } 
 
     public Integer getIdEmpresa() {
         return idEmpresa;
@@ -72,18 +75,13 @@ public class Empresa {
 
     public Integer getEstadoEmpresa() {
         return estadoEmpresa;
-    }    public void setEstadoEmpresa(Integer estadoEmpresa) {
-        this.estadoEmpresa = estadoEmpresa;
     }
     public Empresa(Integer id) {
     this.idEmpresa = id;
 }
 
-    @PrePersist
-    public void prePersist() {
-        if (this.fecharegistroEmpresa == null) {
-            this.fecharegistroEmpresa = LocalDateTime.now();
-        }
+    public void setEstadoEmpresa(Integer estadoEmpresa) {
+        this.estadoEmpresa = estadoEmpresa;
     }
 
     @Override
@@ -92,4 +90,6 @@ public class Empresa {
                 + ", logoEmpresa=" + logoEmpresa + ", fecharegistroEmpresa=" + fecharegistroEmpresa + ", estadoEmpresa="
                 + estadoEmpresa + "]";
     }
+
+    
 }

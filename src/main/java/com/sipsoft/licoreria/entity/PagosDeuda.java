@@ -30,12 +30,9 @@ public class PagosDeuda {
     private String observaciones;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idDeuda", insertable = false, updatable = false)
+    @JoinColumn(name = "idDeuda")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private DeudaProveedor deudaProveedor;
-
-    public PagosDeuda() {
-    }
+    private DeudaProveedor idDeuda;
 
     public Integer getIdPagosDeuda() {
         return idPagosDeuda;
@@ -77,18 +74,22 @@ public class PagosDeuda {
         this.observaciones = observaciones;
     }
 
-    public DeudaProveedor getDeudaProveedor() {
-        return deudaProveedor;
+    public DeudaProveedor getIdDeuda() {
+        return idDeuda;
     }
 
-    public void setDeudaProveedor(DeudaProveedor deudaProveedor) {
-        this.deudaProveedor = deudaProveedor;
+    public void setIdDeuda(DeudaProveedor idDeuda) {
+        this.idDeuda = idDeuda;
     }
 
     @Override
     public String toString() {
         return "PagosDeuda [idPagosDeuda=" + idPagosDeuda + ", fechaPagoParcialDeuda=" + fechaPagoParcialDeuda
                 + ", montoAbonado=" + montoAbonado + ", estadoPagosDeuda=" + estadoPagosDeuda + ", observaciones="
-                + observaciones + ", deudaProveedor=" + deudaProveedor + "]";
+                + observaciones + ", idDeuda=" + idDeuda + "]";
     }
+
+    
+
+    
 }

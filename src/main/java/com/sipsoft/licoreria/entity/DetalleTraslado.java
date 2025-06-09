@@ -20,17 +20,14 @@ public class DetalleTraslado {
     private Integer cantidadTraslado;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idTraslado", insertable = false, updatable = false)
+    @JoinColumn(name = "idTraslado")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Traslado traslado;
+    private Traslado idTraslado;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idLote", insertable = false, updatable = false)
+    @JoinColumn(name = "idLote")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Lote lote;
-
-    public DetalleTraslado() {
-    }
+    private Lote idLote;
 
     public Integer getIdDetalleTraslado() {
         return idDetalleTraslado;
@@ -48,25 +45,28 @@ public class DetalleTraslado {
         this.cantidadTraslado = cantidadTraslado;
     }
 
-    public Traslado getTraslado() {
-        return traslado;
+    public Traslado getIdTraslado() {
+        return idTraslado;
     }
 
-    public void setTraslado(Traslado traslado) {
-        this.traslado = traslado;
+    public void setIdTraslado(Traslado idTraslado) {
+        this.idTraslado = idTraslado;
     }
 
-    public Lote getLote() {
-        return lote;
+    public Lote getIdLote() {
+        return idLote;
     }
 
-    public void setLote(Lote lote) {
-        this.lote = lote;
+    public void setIdLote(Lote idLote) {
+        this.idLote = idLote;
     }
 
     @Override
     public String toString() {
         return "DetalleTraslado [idDetalleTraslado=" + idDetalleTraslado + ", cantidadTraslado=" + cantidadTraslado
-                + ", traslado=" + traslado + ", lote=" + lote + "]";
+                + ", idTraslado=" + idTraslado + ", idLote=" + idLote + "]";
     }
+
+    
+   
 }

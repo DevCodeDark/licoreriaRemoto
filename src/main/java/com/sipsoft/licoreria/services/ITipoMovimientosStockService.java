@@ -7,8 +7,8 @@ import com.sipsoft.licoreria.entity.TipoMovimientosStock;
 
 public interface ITipoMovimientosStockService {
     List<TipoMovimientosStock> bucarTodos();
-    void guardar(TipoMovimientosStock tipoMovimientosStock);
-    void modificar(TipoMovimientosStock tipoMovimientosStock);
+    TipoMovimientosStock guardar(TipoMovimientosStock tipoMovimientosStock);
+    TipoMovimientosStock modificar(TipoMovimientosStock tipoMovimientosStock);
     Optional<TipoMovimientosStock> buscarId(Integer idTipoMovimiento);
     void eliminar(Integer idTipoMovimiento);
 }

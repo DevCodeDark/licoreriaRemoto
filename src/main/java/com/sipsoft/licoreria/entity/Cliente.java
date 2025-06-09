@@ -1,6 +1,5 @@
 package com.sipsoft.licoreria.entity;
 
-import java.time.LocalDate;
 
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
@@ -36,12 +35,9 @@ public class Cliente {
     private String tipoCliente;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idEmpresa", insertable = false, updatable = false)
+    @JoinColumn(name = "idEmpresa")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Empresa empresa;
-
-    public Cliente() {
-    }
+    private Empresa idEmpresa;
 
     public Integer getIdCliente() {
         return idCliente;
@@ -131,12 +127,13 @@ public class Cliente {
         this.tipoCliente = tipoCliente;
     }
 
-    public Empresa getEmpresa() {
-        return empresa;
+    
+    public Empresa getIdEmpresa() {
+        return idEmpresa;
     }
 
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
+    public void setIdEmpresa(Empresa idEmpresa) {
+        this.idEmpresa = idEmpresa;
     }
 
     @Override
@@ -145,6 +142,10 @@ public class Cliente {
                 + ", nombreCliente=" + nombreCliente + ", apellidoCliente=" + apellidoCliente + ", telefonoCliente="
                 + telefonoCliente + ", frecuenciaCompra=" + frecuenciaCompra + ", montoTotalComprado="
                 + montoTotalComprado + ", estadoCliente=" + estadoCliente + ", nombreRazonSocial=" + nombreRazonSocial
-                + ", tipoCliente=" + tipoCliente + ", empresa=" + empresa + "]";
+                + ", tipoCliente=" + tipoCliente + ", idEmpresa=" + idEmpresa + "]";
     }
+
+    
+
+    
 }

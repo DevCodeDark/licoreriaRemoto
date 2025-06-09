@@ -7,8 +7,8 @@ import com.sipsoft.licoreria.entity.TipoNotificaciones;
 
 public interface ITipoNotificacionesService {
     List<TipoNotificaciones> bucarTodos();
-    void guardar(TipoNotificaciones tipoNotificaciones);
-    void modificar(TipoNotificaciones tipoNotificaciones);
+    TipoNotificaciones guardar(TipoNotificaciones tipoNotificaciones);
+    TipoNotificaciones modificar(TipoNotificaciones tipoNotificaciones);
     Optional<TipoNotificaciones> buscarId(Integer idTipoNotificacion);
     void eliminar(Integer idTipoNotificacion);
 }

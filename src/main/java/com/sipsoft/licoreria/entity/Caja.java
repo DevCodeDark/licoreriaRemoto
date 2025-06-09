@@ -46,6 +46,13 @@ public class Caja {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Usuario usuarioCierre;
 
+    public Caja() {
+    }
+
+    public Caja(Integer id) {
+        this.idCaja = id;
+    }
+
     public Integer getIdCaja() {
         return idCaja;
     }

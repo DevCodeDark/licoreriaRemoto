@@ -7,8 +7,8 @@ import com.sipsoft.licoreria.entity.UnidadMedida;
 
 public interface IUnidadMedidaService {
     List<UnidadMedida> bucarTodos();
-    void guardar(UnidadMedida unidadMedida);
-    void modificar(UnidadMedida unidadMedida);
+    UnidadMedida guardar(UnidadMedida unidadMedida);
+    UnidadMedida modificar(UnidadMedida unidadMedida);
     Optional<UnidadMedida> buscarId(Integer idUnidadMedida);
     void eliminar(Integer idUnidadMedida);
 }

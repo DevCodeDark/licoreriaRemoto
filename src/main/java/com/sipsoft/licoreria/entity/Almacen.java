@@ -26,12 +26,9 @@ public class Almacen {
     private Integer estadoAlmacen = 1;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idSucursal", insertable = false, updatable = false)
+    @JoinColumn(name = "idSucursal")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Sucursal sucursal;
-
-    public Almacen() {
-    }
+    private Sucursal idSucursal;
 
     public Integer getIdAlmacen() {
         return idAlmacen;
@@ -57,17 +54,18 @@ public class Almacen {
         this.estadoAlmacen = estadoAlmacen;
     }
 
-    public Sucursal getSucursal() {
-        return sucursal;
+    public Sucursal getIdSucursal() {
+        return idSucursal;
     }
 
-    public void setSucursal(Sucursal sucursal) {
-        this.sucursal = sucursal;
+    public void setIdSucursal(Sucursal idSucursal) {
+        this.idSucursal = idSucursal;
     }
 
     @Override
     public String toString() {
         return "Almacen [idAlmacen=" + idAlmacen + ", descripcionAlmacen=" + descripcionAlmacen + ", estadoAlmacen="
-                + estadoAlmacen + ", sucursal=" + sucursal + "]";
+                + estadoAlmacen + ", idSucursal=" + idSucursal + "]";
     }
+
 }

@@ -1,7 +1,6 @@
 package com.sipsoft.licoreria.entity;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -32,11 +31,15 @@ public class DeudaProveedor {
     private Integer estadoDeuda = 1;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idCompra", insertable = false, updatable = false)
+    @JoinColumn(name = "idCompra")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Compra compra;
+    private Compra idCompra;
 
     public DeudaProveedor() {
+    }
+
+    public DeudaProveedor(Integer id) {
+        this.idDeuda = id;
     }
 
     public Integer getIdDeuda() {
@@ -87,18 +90,21 @@ public class DeudaProveedor {
         this.estadoDeuda = estadoDeuda;
     }
 
-    public Compra getCompra() {
-        return compra;
+    public Compra getIdCompra() {
+        return idCompra;
     }
 
-    public void setCompra(Compra compra) {
-        this.compra = compra;
+    public void setIdCompra(Compra idCompra) {
+        this.idCompra = idCompra;
     }
 
     @Override
     public String toString() {
         return "DeudaProveedor [idDeuda=" + idDeuda + ", fechaDeuda=" + fechaDeuda + ", montoDeuda=" + montoDeuda
                 + ", montoPagado=" + montoPagado + ", fechaLimiteDeuda=" + fechaLimiteDeuda + ", estadoDeuda="
-                + estadoDeuda + ", compra=" + compra + "]";
+                + estadoDeuda + ", idCompra=" + idCompra + "]";
     }
+
+    
+    
 }

@@ -7,8 +7,8 @@ import com.sipsoft.licoreria.entity.Modulo;
 
 public interface IModuloService {
     List<Modulo> bucarTodos();
-    void guardar(Modulo modulo);
-    void modificar(Modulo modulo);
+    Modulo guardar(Modulo modulo);
+    Modulo modificar(Modulo modulo);
     Optional<Modulo> buscarId(Integer idModulo);
     void eliminar(Integer idModulo);
 }

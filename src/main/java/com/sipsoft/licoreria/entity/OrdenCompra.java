@@ -2,20 +2,11 @@ package com.sipsoft.licoreria.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "orden_compra")
@@ -28,29 +19,35 @@ public class OrdenCompra {
     private Boolean activo = true;
     private String estado;
     private LocalDateTime fechaActualizacion;
-    private LocalDate fechaEnvio;
+    private LocalDateTime fechaEnvio;
     private LocalDate fechaOrden;
     private LocalDateTime fechaRegistro;
-    private LocalDate fechaRespuesta;
+    private LocalDateTime fechaRespuesta;
     private String observaciones;
+    private Integer idEmpresa;
+    private Integer idProveedor;
+    private Integer idTipoPago;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idEmpresa", insertable = false, updatable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Empresa empresa;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idProveedor", insertable = false, updatable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Proveedor proveedor;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idTipoPago", insertable = false, updatable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private TipoPago tipoPago;
 
-    public OrdenCompra() {
-    }
+    // --- Constructores, Getters y Setters ---
+    public OrdenCompra() {}
 
     public Integer getIdOrden() {
         return idOrden;
@@ -84,11 +81,11 @@ public class OrdenCompra {
         this.fechaActualizacion = fechaActualizacion;
     }
 
-    public LocalDate getFechaEnvio() {
+    public LocalDateTime getFechaEnvio() {
         return fechaEnvio;
     }
 
-    public void setFechaEnvio(LocalDate fechaEnvio) {
+    public void setFechaEnvio(LocalDateTime fechaEnvio) {
         this.fechaEnvio = fechaEnvio;
     }
 
@@ -108,11 +105,11 @@ public class OrdenCompra {
         this.fechaRegistro = fechaRegistro;
     }
 
-    public LocalDate getFechaRespuesta() {
+    public LocalDateTime getFechaRespuesta() {
         return fechaRespuesta;
     }
 
-    public void setFechaRespuesta(LocalDate fechaRespuesta) {
+    public void setFechaRespuesta(LocalDateTime fechaRespuesta) {
         this.fechaRespuesta = fechaRespuesta;
     }
 
@@ -122,6 +119,30 @@ public class OrdenCompra {
 
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
+    }
+
+    public Integer getIdEmpresa() {
+        return idEmpresa;
+    }
+
+    public void setIdEmpresa(Integer idEmpresa) {
+        this.idEmpresa = idEmpresa;
+    }
+
+    public Integer getIdProveedor() {
+        return idProveedor;
+    }
+
+    public void setIdProveedor(Integer idProveedor) {
+        this.idProveedor = idProveedor;
+    }
+
+    public Integer getIdTipoPago() {
+        return idTipoPago;
+    }
+
+    public void setIdTipoPago(Integer idTipoPago) {
+        this.idTipoPago = idTipoPago;
     }
 
     public Empresa getEmpresa() {
@@ -146,13 +167,5 @@ public class OrdenCompra {
 
     public void setTipoPago(TipoPago tipoPago) {
         this.tipoPago = tipoPago;
-    }
-
-    @Override
-    public String toString() {
-        return "OrdenCompra [idOrden=" + idOrden + ", activo=" + activo + ", estado=" + estado + ", fechaActualizacion="
-                + fechaActualizacion + ", fechaEnvio=" + fechaEnvio + ", fechaOrden=" + fechaOrden + ", fechaRegistro="
-                + fechaRegistro + ", fechaRespuesta=" + fechaRespuesta + ", observaciones=" + observaciones
-                + ", empresa=" + empresa + ", proveedor=" + proveedor + ", tipoPago=" + tipoPago + "]";
     }
 }

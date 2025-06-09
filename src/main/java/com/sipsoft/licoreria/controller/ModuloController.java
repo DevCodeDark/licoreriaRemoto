@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sipsoft.licoreria.dto.ModuloDTO;
 import com.sipsoft.licoreria.entity.Modulo;
 import com.sipsoft.licoreria.services.IModuloService;
 
@@ -26,16 +28,36 @@ public class ModuloController {
     public List<Modulo> buscarTodos() {
         return serviceModulo.bucarTodos();
     }
+    
     @PostMapping("/modulos")
-    public Modulo guardar(@RequestBody Modulo modulo) {
-        serviceModulo.guardar(modulo);
-        return modulo;
+    public Modulo guardar(@RequestBody ModuloDTO moduloDto) {
+        Modulo modulo = new Modulo();
+        modulo.setUrlModulo(moduloDto.getUrlModulo());
+        modulo.setNombreModulo(moduloDto.getNombreModulo());
+        modulo.setEstadoModulo(1);
+        modulo.setIdEmpresa(moduloDto.getIdEmpresa());
+        
+        return serviceModulo.guardar(modulo);
     }
 
     @PutMapping("/modulos")
-    public Modulo modificar(@RequestBody Modulo modulo) {
-        serviceModulo.modificar(modulo);
-        return modulo;
+    public ResponseEntity<?> modificar(@RequestBody ModuloDTO moduloDto) {
+        if (moduloDto.getIdModulo() == null) {
+            return ResponseEntity.badRequest().body("El idModulo es requerido para modificar.");
+        }
+        
+        Optional<Modulo> moduloOpt = serviceModulo.buscarId(moduloDto.getIdModulo());
+        if (moduloOpt.isEmpty()) {
+            return ResponseEntity.badRequest().body("No se encontró el Módulo con ID: " + moduloDto.getIdModulo());
+        }
+
+        Modulo moduloExistente = moduloOpt.get();
+        moduloExistente.setUrlModulo(moduloDto.getUrlModulo());
+        moduloExistente.setNombreModulo(moduloDto.getNombreModulo());
+        moduloExistente.setIdEmpresa(moduloDto.getIdEmpresa());
+        
+        Modulo moduloModificado = serviceModulo.modificar(moduloExistente);
+        return ResponseEntity.ok(moduloModificado);
     }
 
     @GetMapping("/modulos/{idModulo}")

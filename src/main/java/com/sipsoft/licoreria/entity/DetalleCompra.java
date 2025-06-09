@@ -1,5 +1,6 @@
 package com.sipsoft.licoreria.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.hibernate.annotations.SQLDelete;
@@ -28,24 +29,30 @@ public class DetalleCompra {
     private Float igvDetalle;
     private Float totalDetalle;
     private Integer estadoDetalleCompra = 1;
+    private Integer idCompra;
+    private Integer idLote;
+    private Integer idProducto;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idCompra", insertable = false, updatable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Compra compra;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idLote", insertable = false, updatable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Lote lote;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idProducto", insertable = false, updatable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Producto producto;
 
-    public DetalleCompra() {
-    }
+    // --- Getters y Setters ---
+    public DetalleCompra() {}
 
     public Integer getIdDetalleCompra() {
         return idDetalleCompra;
@@ -103,6 +110,30 @@ public class DetalleCompra {
         this.estadoDetalleCompra = estadoDetalleCompra;
     }
 
+    public Integer getIdCompra() {
+        return idCompra;
+    }
+
+    public void setIdCompra(Integer idCompra) {
+        this.idCompra = idCompra;
+    }
+
+    public Integer getIdLote() {
+        return idLote;
+    }
+
+    public void setIdLote(Integer idLote) {
+        this.idLote = idLote;
+    }
+
+    public Integer getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(Integer idProducto) {
+        this.idProducto = idProducto;
+    }
+
     public Compra getCompra() {
         return compra;
     }
@@ -125,13 +156,5 @@ public class DetalleCompra {
 
     public void setProducto(Producto producto) {
         this.producto = producto;
-    }
-
-    @Override
-    public String toString() {
-        return "DetalleCompra [idDetalleCompra=" + idDetalleCompra + ", cantidadCompra=" + cantidadCompra
-                + ", precioCompra=" + precioCompra + ", subtotalCompra=" + subtotalCompra + ", igvDetalle=" + igvDetalle
-                + ", totalDetalle=" + totalDetalle + ", estadoDetalleCompra=" + estadoDetalleCompra + ", compra="
-                + compra + ", lote=" + lote + ", producto=" + producto + "]";
     }
 }

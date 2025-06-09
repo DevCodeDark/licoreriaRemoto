@@ -7,8 +7,8 @@ import com.sipsoft.licoreria.entity.ContratoProveedor;
 
 public interface IContratoProveedorService {
     List<ContratoProveedor> bucarTodos();
-    void guardar(ContratoProveedor contratoProveedor);
-    void modificar(ContratoProveedor contratoProveedor);
+    ContratoProveedor guardar(ContratoProveedor contratoProveedor);
+    ContratoProveedor modificar(ContratoProveedor contratoProveedor);
     Optional<ContratoProveedor> buscarId(Integer idContratoProveedor);
     void eliminar(Integer idContratoProveedor);
 }
