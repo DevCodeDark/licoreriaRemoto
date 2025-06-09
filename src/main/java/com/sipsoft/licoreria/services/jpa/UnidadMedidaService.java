@@ -19,12 +19,12 @@ public class UnidadMedidaService implements IUnidadMedidaService {
         return repoUnidadMedida.findAll();
     }
     
-    public void guardar(UnidadMedida unidadMedida) {
-        repoUnidadMedida.save(unidadMedida);
+    public UnidadMedida guardar(UnidadMedida unidadMedida) {
+        return repoUnidadMedida.save(unidadMedida);
     }
     
-    public void modificar(UnidadMedida unidadMedida) {
-        repoUnidadMedida.save(unidadMedida);
+    public UnidadMedida modificar(UnidadMedida unidadMedida) {
+        return repoUnidadMedida.save(unidadMedida);
     }
     
     public Optional<UnidadMedida> buscarId(Integer idUnidadMedida) {
