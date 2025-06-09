@@ -45,6 +45,10 @@ public class Lote {
     public Lote() {
     }
 
+    public Lote(Integer id){
+        this.idLote = id;
+    }
+
     public Integer getIdLote() {
         return idLote;
     }
@@ -131,5 +135,7 @@ public class Lote {
                 + ", fechaVencimientoLote=" + fechaVencimientoLote + ", stockInicial=" + stockInicial + ", stockActual="
                 + stockActual + ", flagLote=" + flagLote + ", estadoLote=" + estadoLote + ", producto=" + producto
                 + ", almacen=" + almacen + "]";
-    }
+    } 
+
+    
 }

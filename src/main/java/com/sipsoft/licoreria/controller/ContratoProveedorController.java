@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sipsoft.licoreria.dto.ContratoProveedorDTO;
 import com.sipsoft.licoreria.entity.ContratoProveedor;
-import com.sipsoft.licoreria.entity.ContratoProveedorDTO;
 import com.sipsoft.licoreria.entity.Proveedor;
 import com.sipsoft.licoreria.repository.ProveedorRepository;
 import com.sipsoft.licoreria.services.IContratoProveedorService;
