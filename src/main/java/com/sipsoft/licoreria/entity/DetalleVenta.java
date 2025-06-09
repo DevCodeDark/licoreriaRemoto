@@ -1,7 +1,7 @@
 package com.sipsoft.licoreria.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -23,17 +23,22 @@ public class DetalleVenta {
     private Float subtotalVenta;
     private Integer estadoDetalleVenta = 1;
     private String tipoDescuento;
+    private Integer idVenta;
+    private Integer idLote;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idVenta")
+    @JoinColumn(name = "idVenta", insertable = false, updatable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Venta venta;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idLote")
+    @JoinColumn(name = "idLote", insertable = false, updatable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Lote lote;
 
+    // --- Constructores, Getters y Setters ---
     public DetalleVenta() {
     }
 
@@ -93,6 +98,22 @@ public class DetalleVenta {
         this.tipoDescuento = tipoDescuento;
     }
 
+    public Integer getIdVenta() {
+        return idVenta;
+    }
+
+    public void setIdVenta(Integer idVenta) {
+        this.idVenta = idVenta;
+    }
+
+    public Integer getIdLote() {
+        return idLote;
+    }
+
+    public void setIdLote(Integer idLote) {
+        this.idLote = idLote;
+    }
+
     public Venta getVenta() {
         return venta;
     }
@@ -107,13 +128,5 @@ public class DetalleVenta {
 
     public void setLote(Lote lote) {
         this.lote = lote;
-    }
-
-    @Override
-    public String toString() {
-        return "DetalleVenta [idDetalleVenta=" + idDetalleVenta + ", precioUnitario=" + precioUnitario
-                + ", descuentoVenta=" + descuentoVenta + ", cantidadVenta=" + cantidadVenta + ", subtotalVenta="
-                + subtotalVenta + ", estadoDetalleVenta=" + estadoDetalleVenta + ", tipoDescuento=" + tipoDescuento
-                + ", venta=" + venta + ", lote=" + lote + "]";
     }
 }

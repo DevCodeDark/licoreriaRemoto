@@ -24,8 +24,6 @@ public class OrdenCompra {
     private LocalDateTime fechaRegistro;
     private LocalDateTime fechaRespuesta;
     private String observaciones;
-
-    // --- CORRECCIÓN AQUÍ ---
     private Integer idEmpresa;
     private Integer idProveedor;
     private Integer idTipoPago;
