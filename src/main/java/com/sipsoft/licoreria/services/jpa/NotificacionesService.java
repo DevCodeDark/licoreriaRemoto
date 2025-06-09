@@ -19,12 +19,12 @@ public class NotificacionesService implements INotificacionesService {
         return repoNotificaciones.findAll();
     }
     
-    public void guardar(Notificaciones notificaciones) {
-        repoNotificaciones.save(notificaciones);
+    public Notificaciones guardar(Notificaciones notificaciones) {
+        return repoNotificaciones.save(notificaciones);
     }
     
-    public void modificar(Notificaciones notificaciones) {
-        repoNotificaciones.save(notificaciones);
+    public Notificaciones modificar(Notificaciones notificaciones) {
+        return repoNotificaciones.save(notificaciones);
     }
     
     public Optional<Notificaciones> buscarId(Integer idNotificacion) {

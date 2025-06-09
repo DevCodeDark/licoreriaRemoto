@@ -19,7 +19,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "contrato_proveedor")
 @SQLDelete(sql = "UPDATE contrato_proveedor SET estadoContrato = 0 WHERE idContratoProveedor = ?")
-@Where(clause = "estadoContrato = 1")
+@Where(clause = "estadoContratoProveedor = 1")
 public class ContratoProveedor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +36,10 @@ public class ContratoProveedor {
     private Proveedor proveedor;
 
     public ContratoProveedor() {
+    }
+
+    public ContratoProveedor( Integer id){
+        this.idContratoProveedor = id;
     }
 
     public Integer getIdContratoProveedor() {
