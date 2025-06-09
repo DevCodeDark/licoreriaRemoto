@@ -76,9 +76,6 @@ public class Empresa {
     public Integer getEstadoEmpresa() {
         return estadoEmpresa;
     }
-    public Empresa(Integer id) {
-    this.idEmpresa = id;
-}
 
     public void setEstadoEmpresa(Integer estadoEmpresa) {
         this.estadoEmpresa = estadoEmpresa;
