@@ -19,12 +19,12 @@ public class TipoNotificacionesService implements ITipoNotificacionesService {
         return repoTipoNotificaciones.findAll();
     }
     
-    public void guardar(TipoNotificaciones tipoNotificaciones) {
-        repoTipoNotificaciones.save(tipoNotificaciones);
+    public TipoNotificaciones guardar(TipoNotificaciones tipoNotificaciones) {
+        return repoTipoNotificaciones.save(tipoNotificaciones);
     }
     
-    public void modificar(TipoNotificaciones tipoNotificaciones) {
-        repoTipoNotificaciones.save(tipoNotificaciones);
+    public TipoNotificaciones modificar(TipoNotificaciones tipoNotificaciones) {
+        return repoTipoNotificaciones.save(tipoNotificaciones);
     }
     
     public Optional<TipoNotificaciones> buscarId(Integer idTipoNotificacion) {
