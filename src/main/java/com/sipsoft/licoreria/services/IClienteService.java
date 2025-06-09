@@ -7,8 +7,8 @@ import com.sipsoft.licoreria.entity.Cliente;
 
 public interface IClienteService {
     List<Cliente> bucarTodos();
-    void guardar(Cliente cliente);
-    void modificar(Cliente cliente);
+    Cliente guardar(Cliente cliente);
+    Cliente modificar(Cliente cliente);
     Optional<Cliente> buscarId(Integer idCliente);
     void eliminar(Integer idCliente);
 }
