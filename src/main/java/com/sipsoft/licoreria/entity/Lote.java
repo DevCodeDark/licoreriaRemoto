@@ -33,17 +33,14 @@ public class Lote {
     private Integer estadoLote = 1;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idProducto", insertable = false, updatable = false)
+    @JoinColumn(name = "idProducto")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Producto producto;
+    private Producto idProducto;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idAlmacen", insertable = false, updatable = false)
+    @JoinColumn(name = "idAlmacen")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Almacen almacen;
-
-    public Lote() {
-    }
+    private Almacen idAlmacen;
 
     public Integer getIdLote() {
         return idLote;
@@ -109,27 +106,27 @@ public class Lote {
         this.estadoLote = estadoLote;
     }
 
-    public Producto getProducto() {
-        return producto;
+    public Producto getIdProducto() {
+        return idProducto;
     }
 
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+    public void setIdProducto(Producto idProducto) {
+        this.idProducto = idProducto;
     }
 
-    public Almacen getAlmacen() {
-        return almacen;
+    public Almacen getIdAlmacen() {
+        return idAlmacen;
     }
 
-    public void setAlmacen(Almacen almacen) {
-        this.almacen = almacen;
+    public void setIdAlmacen(Almacen idAlmacen) {
+        this.idAlmacen = idAlmacen;
     }
 
     @Override
     public String toString() {
         return "Lote [idLote=" + idLote + ", codLote=" + codLote + ", fechaEntradaLote=" + fechaEntradaLote
                 + ", fechaVencimientoLote=" + fechaVencimientoLote + ", stockInicial=" + stockInicial + ", stockActual="
-                + stockActual + ", flagLote=" + flagLote + ", estadoLote=" + estadoLote + ", producto=" + producto
-                + ", almacen=" + almacen + "]";
+                + stockActual + ", flagLote=" + flagLote + ", estadoLote=" + estadoLote + ", idProducto=" + idProducto
+                + ", idAlmacen=" + idAlmacen + "]";
     }
 }
