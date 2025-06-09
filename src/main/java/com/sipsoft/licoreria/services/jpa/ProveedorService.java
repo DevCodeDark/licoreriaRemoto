@@ -2,10 +2,8 @@ package com.sipsoft.licoreria.services.jpa;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.sipsoft.licoreria.entity.Proveedor;
 import com.sipsoft.licoreria.repository.ProveedorRepository;
 import com.sipsoft.licoreria.services.IProveedorService;
@@ -19,12 +17,12 @@ public class ProveedorService implements IProveedorService {
         return repoProveedor.findAll();
     }
     
-    public void guardar(Proveedor proveedor) {
-        repoProveedor.save(proveedor);
+    public Proveedor guardar(Proveedor proveedor) {
+        return repoProveedor.save(proveedor);
     }
     
-    public void modificar(Proveedor proveedor) {
-        repoProveedor.save(proveedor);
+    public Proveedor modificar(Proveedor proveedor) {
+        return repoProveedor.save(proveedor);
     }
     
     public Optional<Proveedor> buscarId(Integer idProveedor) {
