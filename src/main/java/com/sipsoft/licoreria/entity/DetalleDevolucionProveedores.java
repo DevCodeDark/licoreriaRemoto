@@ -1,10 +1,9 @@
 package com.sipsoft.licoreria.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -24,17 +23,22 @@ public class DetalleDevolucionProveedores {
     private Integer idDetalleDevolucion;
     private Integer cantidadDevolucion;
     private Integer estadoDetalleDevolucion = 1;
+    private Integer idDevolucionCompra;
+    private Integer idProducto;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idDevolucionCompra", insertable = false, updatable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private DevolucionCompra devolucionCompra;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idProducto", insertable = false, updatable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Producto producto;
 
+    // --- Constructores, Getters y Setters ---
     public DetalleDevolucionProveedores() {
     }
 
@@ -62,6 +66,22 @@ public class DetalleDevolucionProveedores {
         this.estadoDetalleDevolucion = estadoDetalleDevolucion;
     }
 
+    public Integer getIdDevolucionCompra() {
+        return idDevolucionCompra;
+    }
+
+    public void setIdDevolucionCompra(Integer idDevolucionCompra) {
+        this.idDevolucionCompra = idDevolucionCompra;
+    }
+
+    public Integer getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(Integer idProducto) {
+        this.idProducto = idProducto;
+    }
+
     public DevolucionCompra getDevolucionCompra() {
         return devolucionCompra;
     }
@@ -81,7 +101,7 @@ public class DetalleDevolucionProveedores {
     @Override
     public String toString() {
         return "DetalleDevolucionProveedores [idDetalleDevolucion=" + idDetalleDevolucion + ", cantidadDevolucion="
-                + cantidadDevolucion + ", estadoDetalleDevolucion=" + estadoDetalleDevolucion + ", devolucionCompra="
-                + devolucionCompra + ", producto=" + producto + "]";
+                + cantidadDevolucion + ", estadoDetalleDevolucion=" + estadoDetalleDevolucion + ", idDevolucionCompra="
+                + idDevolucionCompra + ", idProducto=" + idProducto + "]";
     }
 }
