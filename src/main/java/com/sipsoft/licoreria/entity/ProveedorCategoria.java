@@ -1,42 +1,40 @@
 package com.sipsoft.licoreria.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "proveedor_categoria")
 public class ProveedorCategoria {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idProveedorCategoria;
 
+    @EmbeddedId
+    private ProveedorCategoriaId id;
+
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idProveedor", insertable = false, updatable = false)
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @MapsId("idProveedor")
+    @JoinColumn(name = "idProveedor")
     private Proveedor proveedor;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idCategoria", insertable = false, updatable = false)
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @MapsId("idCategoria")
+    @JoinColumn(name = "idCategoria")
     private Categoria categoria;
 
-    public ProveedorCategoria() {
+    // Getters y Setters
+    public ProveedorCategoriaId getId() {
+        return id;
     }
 
-    public Integer getIdProveedorCategoria() {
-        return idProveedorCategoria;
-    }
-
-    public void setIdProveedorCategoria(Integer idProveedorCategoria) {
-        this.idProveedorCategoria = idProveedorCategoria;
+    public void setId(ProveedorCategoriaId id) {
+        this.id = id;
     }
 
     public Proveedor getProveedor() {
@@ -53,11 +51,5 @@ public class ProveedorCategoria {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
-    }
-
-    @Override
-    public String toString() {
-        return "ProveedorCategoria [idProveedorCategoria=" + idProveedorCategoria + ", proveedor=" + proveedor
-                + ", categoria=" + categoria + "]";
     }
 }
