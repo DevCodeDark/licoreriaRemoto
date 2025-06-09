@@ -1,10 +1,9 @@
 package com.sipsoft.licoreria.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -13,6 +12,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 @Entity
 @Table(name = "detalle_orden_compra")
@@ -24,19 +26,26 @@ public class DetalleOrdenCompra {
     private Integer idDetalleOrden;
     private Boolean activo = true;
     private Integer cantidadSolicitada;
+    @Column(name = "observacionesDet")
     private String observacionesDetalle;
-    private Float precioUnitario;
 
+    private Float precioUnitario;
+    private Integer idOrden;
+    private Integer idProducto;
+
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idOrden", insertable = false, updatable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private OrdenCompra ordenCompra;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idProducto", insertable = false, updatable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Producto producto;
 
+    // --- Constructores, Getters y Setters---
     public DetalleOrdenCompra() {
     }
 
@@ -80,6 +89,22 @@ public class DetalleOrdenCompra {
         this.precioUnitario = precioUnitario;
     }
 
+    public Integer getIdOrden() {
+        return idOrden;
+    }
+
+    public void setIdOrden(Integer idOrden) {
+        this.idOrden = idOrden;
+    }
+
+    public Integer getIdProducto() {
+        return idProducto;
+    }
+
+    public void setIdProducto(Integer idProducto) {
+        this.idProducto = idProducto;
+    }
+
     public OrdenCompra getOrdenCompra() {
         return ordenCompra;
     }
@@ -94,12 +119,5 @@ public class DetalleOrdenCompra {
 
     public void setProducto(Producto producto) {
         this.producto = producto;
-    }
-
-    @Override
-    public String toString() {
-        return "DetalleOrdenCompra [idDetalleOrden=" + idDetalleOrden + ", activo=" + activo + ", cantidadSolicitada="
-                + cantidadSolicitada + ", observacionesDetalle=" + observacionesDetalle + ", precioUnitario="
-                + precioUnitario + ", ordenCompra=" + ordenCompra + ", producto=" + producto + "]";
     }
 }

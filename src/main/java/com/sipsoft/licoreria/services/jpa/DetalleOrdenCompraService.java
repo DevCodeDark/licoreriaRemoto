@@ -2,10 +2,8 @@ package com.sipsoft.licoreria.services.jpa;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.sipsoft.licoreria.entity.DetalleOrdenCompra;
 import com.sipsoft.licoreria.repository.DetalleOrdenCompraRepository;
 import com.sipsoft.licoreria.services.IDetalleOrdenCompraService;
@@ -19,12 +17,12 @@ public class DetalleOrdenCompraService implements IDetalleOrdenCompraService {
         return repoDetalleOrdenCompra.findAll();
     }
     
-    public void guardar(DetalleOrdenCompra detalleOrdenCompra) {
-        repoDetalleOrdenCompra.save(detalleOrdenCompra);
+    public DetalleOrdenCompra guardar(DetalleOrdenCompra detalleOrdenCompra) {
+        return repoDetalleOrdenCompra.save(detalleOrdenCompra);
     }
     
-    public void modificar(DetalleOrdenCompra detalleOrdenCompra) {
-        repoDetalleOrdenCompra.save(detalleOrdenCompra);
+    public DetalleOrdenCompra modificar(DetalleOrdenCompra detalleOrdenCompra) {
+        return repoDetalleOrdenCompra.save(detalleOrdenCompra);
     }
     
     public Optional<DetalleOrdenCompra> buscarId(Integer idDetalleOrden) {
