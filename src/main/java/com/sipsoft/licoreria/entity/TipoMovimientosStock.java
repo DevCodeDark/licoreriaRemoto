@@ -27,6 +27,10 @@ public class TipoMovimientosStock {
     public TipoMovimientosStock() {
     }
 
+    public TipoMovimientosStock(Integer id){
+        this.idTipoMovimiento = id;
+    }
+
     public Integer getIdTipoMovimiento() {
         return idTipoMovimiento;
     }
@@ -56,4 +60,6 @@ public class TipoMovimientosStock {
         return "TipoMovimientosStock [idTipoMovimiento=" + idTipoMovimiento + ", descripcionMovimiento="
                 + descripcionMovimiento + ", empresa=" + empresa + "]";
     }
+
+    
 }
