@@ -40,6 +40,10 @@ public class Traslado {
     public Traslado() {
     }
 
+    public Traslado(Integer id){
+        this.idTraslado = id;
+    }
+
     public Integer getIdTraslado() {
         return idTraslado;
     }
@@ -84,5 +88,7 @@ public class Traslado {
     public String toString() {
         return "Traslado [idTraslado=" + idTraslado + ", fechaTraslado=" + fechaTraslado + ", estadoTraslado="
                 + estadoTraslado + ", almacenOrigen=" + almacenOrigen + ", almacenDestino=" + almacenDestino + "]";
-    }
+    } 
+
+    
 }
