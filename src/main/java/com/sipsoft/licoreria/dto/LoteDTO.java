@@ -41,6 +41,4 @@ public class LoteDTO {
                 + stockActual + ", flagLote=" + flagLote + ", estadoLote=" + estadoLote + ", idProducto=" + idProducto
                 + ", idAlmacen=" + idAlmacen + "]";
     }
-
-    
 }
