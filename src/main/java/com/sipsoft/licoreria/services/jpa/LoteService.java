@@ -19,12 +19,12 @@ public class LoteService implements ILoteService {
         return repoLote.findAll();
     }
     
-    public void guardar(Lote lote) {
-        repoLote.save(lote);
+    public Lote guardar(Lote lote) {
+        return repoLote.save(lote);
     }
     
-    public void modificar(Lote lote) {
-        repoLote.save(lote);
+    public Lote modificar(Lote lote) {
+        return repoLote.save(lote);
     }
     
     public Optional<Lote> buscarId(Integer idLote) {

@@ -19,12 +19,12 @@ public class UsuarioService implements IUsuarioService {
         return repoUsuario.findAll();
     }
     
-    public void guardar(Usuario usuario) {
-        repoUsuario.save(usuario);
+    public Usuario guardar(Usuario usuario) {
+        return repoUsuario.save(usuario);
     }
     
-    public void modificar(Usuario usuario) {
-        repoUsuario.save(usuario);
+    public Usuario modificar(Usuario usuario) {
+        return repoUsuario.save(usuario);
     }
     
     public Optional<Usuario> buscarId(Integer idUsuario) {

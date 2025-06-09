@@ -19,12 +19,12 @@ public class RolService implements IRolService {
         return repoRol.findAll();
     }
     
-    public void guardar(Rol rol) {
-        repoRol.save(rol);
+    public Rol guardar(Rol rol) {
+        return repoRol.save(rol);
     }
     
-    public void modificar(Rol rol) {
-        repoRol.save(rol);
+    public Rol modificar(Rol rol) {
+        return repoRol.save(rol);
     }
     
     public Optional<Rol> buscarId(Integer idRol) {

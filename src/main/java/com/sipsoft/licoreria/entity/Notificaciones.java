@@ -29,19 +29,19 @@ public class Notificaciones {
     private Integer estadoNotificacion = 1;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idProducto", insertable = false, updatable = false)
+    @JoinColumn(name = "idProducto")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Producto producto;
+    private Producto idProducto;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idContratoProveedor", insertable = false, updatable = false)
+    @JoinColumn(name = "idContratoProveedor")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private ContratoProveedor contratoProveedor;
+    private ContratoProveedor idContratoProveedor;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idTipoNotificacion", insertable = false, updatable = false)
+    @JoinColumn(name = "idTipoNotificacion")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private TipoNotificaciones tipoNotificacion;
+    private TipoNotificaciones idTipoNotificacion;
 
     public Notificaciones() {
     }
@@ -78,34 +78,35 @@ public class Notificaciones {
         this.estadoNotificacion = estadoNotificacion;
     }
 
-    public Producto getProducto() {
-        return producto;
+    public Producto getIdProducto() {
+        return idProducto;
     }
 
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+    public void setIdProducto(Producto idProducto) {
+        this.idProducto = idProducto;
     }
 
-    public ContratoProveedor getContratoProveedor() {
-        return contratoProveedor;
+    public ContratoProveedor getIdContratoProveedor() {
+        return idContratoProveedor;
     }
 
-    public void setContratoProveedor(ContratoProveedor contratoProveedor) {
-        this.contratoProveedor = contratoProveedor;
+    public void setIdContratoProveedor(ContratoProveedor idContratoProveedor) {
+        this.idContratoProveedor = idContratoProveedor;
     }
 
-    public TipoNotificaciones getTipoNotificacion() {
-        return tipoNotificacion;
+    public TipoNotificaciones getIdTipoNotificacion() {
+        return idTipoNotificacion;
     }
 
-    public void setTipoNotificacion(TipoNotificaciones tipoNotificacion) {
-        this.tipoNotificacion = tipoNotificacion;
+    public void setIdTipoNotificacion(TipoNotificaciones idTipoNotificacion) {
+        this.idTipoNotificacion = idTipoNotificacion;
     }
 
     @Override
     public String toString() {
         return "Notificaciones [idNotificacion=" + idNotificacion + ", fechaNotificacion=" + fechaNotificacion
-                + ", mensaje=" + mensaje + ", estadoNotificacion=" + estadoNotificacion + ", producto=" + producto
-                + ", contratoProveedor=" + contratoProveedor + ", tipoNotificacion=" + tipoNotificacion + "]";
+                + ", mensaje=" + mensaje + ", estadoNotificacion=" + estadoNotificacion + ", idProducto=" + idProducto
+                + ", idContratoProveedor=" + idContratoProveedor + ", idTipoNotificacion=" + idTipoNotificacion + "]";
     }
+
 }

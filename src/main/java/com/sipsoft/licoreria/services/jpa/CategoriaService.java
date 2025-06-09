@@ -19,12 +19,12 @@ public class CategoriaService implements ICategoriaService {
         return repoCategoria.findAll();
     }
     
-    public void guardar(Categoria categoria) {
-        repoCategoria.save(categoria);
+    public Categoria guardar(Categoria categoria) {
+        return repoCategoria.save(categoria);
     }
     
-    public void modificar(Categoria categoria) {
-        repoCategoria.save(categoria);
+    public Categoria modificar(Categoria categoria) {
+        return repoCategoria.save(categoria);
     }
     
     public Optional<Categoria> buscarId(Integer idCategoria) {
