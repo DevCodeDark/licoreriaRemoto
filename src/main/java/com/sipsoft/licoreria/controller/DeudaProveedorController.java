@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sipsoft.licoreria.dto.DeudaProveedorDTO;
+import com.sipsoft.licoreria.entity.Compra;
 import com.sipsoft.licoreria.entity.DeudaProveedor;
+import com.sipsoft.licoreria.repository.CompraRepository;
 import com.sipsoft.licoreria.services.IDeudaProveedorService;
 
 @RestController
@@ -22,20 +26,46 @@ public class DeudaProveedorController {
     @Autowired
     private IDeudaProveedorService serviceDeudaProveedor;
 
+    @Autowired
+    private CompraRepository repoCompra;
+
     @GetMapping("/deuda-proveedor")
     public List<DeudaProveedor> buscarTodos() {
         return serviceDeudaProveedor.bucarTodos();
     }
     @PostMapping("/deuda-proveedor")
-    public DeudaProveedor guardar(@RequestBody DeudaProveedor deudaProveedor) {
-        serviceDeudaProveedor.guardar(deudaProveedor);
-        return deudaProveedor;
+    public ResponseEntity <?> guardar(@RequestBody DeudaProveedorDTO dto) {
+       DeudaProveedor deudaProveedor = new DeudaProveedor();
+       deudaProveedor.setFechaDeuda(dto.getFechaDeuda());
+       deudaProveedor.setMontoDeuda(dto.getMontoDeuda());
+       deudaProveedor.setMontoPagado(dto.getMontoPagado());
+       deudaProveedor.setFechaLimiteDeuda(dto.getFechaLimiteDeuda());
+
+
+
+        Compra compra = repoCompra.findById(dto.getIdCompra()).orElse(null);
+
+        deudaProveedor.setIdCompra(compra); 
+
+        return ResponseEntity.ok(serviceDeudaProveedor.guardar(deudaProveedor));
     }
 
+
     @PutMapping("/deuda-proveedor")
-    public DeudaProveedor modificar(@RequestBody DeudaProveedor deudaProveedor) {
-        serviceDeudaProveedor.modificar(deudaProveedor);
-        return deudaProveedor;
+    public ResponseEntity <?> modificar(@RequestBody DeudaProveedorDTO dto) {
+        if (dto.getIdDeuda() == null) {
+            return ResponseEntity.badRequest().body("ID no existe");            
+        }
+        DeudaProveedor deudaProveedor = new DeudaProveedor();
+        deudaProveedor.setIdDeuda(dto.getIdDeuda());
+        deudaProveedor.setFechaDeuda(dto.getFechaDeuda());
+        deudaProveedor.setMontoDeuda(dto.getMontoDeuda());
+        deudaProveedor.setMontoPagado(dto.getMontoPagado());
+        deudaProveedor.setFechaLimiteDeuda(dto.getFechaLimiteDeuda());
+
+        deudaProveedor.setIdCompra(new Compra(dto.getIdCompra()));
+
+        return ResponseEntity.ok(serviceDeudaProveedor.modificar(deudaProveedor));
     }
 
     @GetMapping("/deuda-proveedor/{idDeuda}")
