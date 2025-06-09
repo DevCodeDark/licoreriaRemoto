@@ -7,8 +7,8 @@ import com.sipsoft.licoreria.entity.Producto;
 
 public interface IProductoService {
     List<Producto> bucarTodos();
-    void guardar(Producto producto);
-    void modificar(Producto producto);
+    Producto guardar(Producto producto);
+    Producto modificar(Producto producto);
     Optional<Producto> buscarId(Integer idProducto);
     void eliminar(Integer idProducto);
 }
