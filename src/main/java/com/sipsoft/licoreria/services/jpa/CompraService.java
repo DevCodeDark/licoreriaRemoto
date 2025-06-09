@@ -2,10 +2,8 @@ package com.sipsoft.licoreria.services.jpa;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.sipsoft.licoreria.entity.Compra;
 import com.sipsoft.licoreria.repository.CompraRepository;
 import com.sipsoft.licoreria.services.ICompraService;
@@ -19,12 +17,12 @@ public class CompraService implements ICompraService {
         return repoCompra.findAll();
     }
     
-    public void guardar(Compra compra) {
-        repoCompra.save(compra);
+    public Compra guardar(Compra compra) {
+        return repoCompra.save(compra);
     }
     
-    public void modificar(Compra compra) {
-        repoCompra.save(compra);
+    public Compra modificar(Compra compra) {
+        return repoCompra.save(compra);
     }
     
     public Optional<Compra> buscarId(Integer idCompra) {
