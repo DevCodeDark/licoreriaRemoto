@@ -7,8 +7,8 @@ import com.sipsoft.licoreria.entity.Sucursal;
 
 public interface ISucursalService {
     List<Sucursal> bucarTodos();
-    void guardar(Sucursal sucursal);
-    void modificar(Sucursal sucursal);
+    Sucursal guardar(Sucursal sucursal);
+    Sucursal modificar(Sucursal sucursal);
     Optional<Sucursal> buscarId(Integer idSucursal);
     void eliminar(Integer idSucursal);
 }
