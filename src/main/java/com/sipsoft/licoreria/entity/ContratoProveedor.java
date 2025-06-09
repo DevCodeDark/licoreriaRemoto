@@ -35,6 +35,9 @@ public class ContratoProveedor {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Proveedor idProveedor;
 
+    public ContratoProveedor() {
+    }
+
     public ContratoProveedor( Integer id){
         this.idContratoProveedor = id;
     }
