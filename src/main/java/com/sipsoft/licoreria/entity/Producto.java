@@ -45,6 +45,10 @@ public class Producto {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private UnidadMedida idUnidadMedida;
 
+    public Producto(Integer id){
+        this.idProducto = id;
+    } 
+
     public Integer getIdProducto() {
         return idProducto;
     }
