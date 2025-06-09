@@ -1,5 +1,10 @@
 package com.sipsoft.licoreria.entity;
 
+import java.math.BigDecimal;
+
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
@@ -13,19 +18,22 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "multi_pago")
+@SQLDelete(sql = "UPDATE multi_pago SET estado = 0 WHERE idMultiPago = ?")
+@Where(clause = "estado = 1")
 public class MultiPago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idMultiPago;
-    private Float montoPagado;
+    private BigDecimal montoPagado;
+     private Integer estado = 1; 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idVenta", insertable = false, updatable = false)
+    @JoinColumn(name = "idVenta")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Venta venta;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idTipoPago", insertable = false, updatable = false)
+    @JoinColumn(name = "idTipoPago")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private TipoPago tipoPago;
 
@@ -40,13 +48,14 @@ public class MultiPago {
         this.idMultiPago = idMultiPago;
     }
 
-    public Float getMontoPagado() {
+    public BigDecimal getMontoPagado() {
         return montoPagado;
     }
 
-    public void setMontoPagado(Float montoPagado) {
+    public void setMontoPagado(BigDecimal montoPagado) {
         this.montoPagado = montoPagado;
     }
+    
 
     public Venta getVenta() {
         return venta;
@@ -68,5 +77,13 @@ public class MultiPago {
     public String toString() {
         return "MultiPago [idMultiPago=" + idMultiPago + ", montoPagado=" + montoPagado + ", venta=" + venta
                 + ", tipoPago=" + tipoPago + "]";
+    }
+
+    public Integer getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Integer estado) {
+        this.estado = estado;
     }
 }

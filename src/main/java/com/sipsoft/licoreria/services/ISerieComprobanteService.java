@@ -7,8 +7,8 @@ import com.sipsoft.licoreria.entity.SerieComprobante;
 
 public interface ISerieComprobanteService {
     List<SerieComprobante> bucarTodos();
-    void guardar(SerieComprobante serieComprobante);
-    void modificar(SerieComprobante serieComprobante);
+    SerieComprobante guardar(SerieComprobante serieComprobante);
+    SerieComprobante modificar(SerieComprobante serieComprobante);
     Optional<SerieComprobante> buscarId(Integer idSerie);
     void eliminar(Integer idSerie);
 }

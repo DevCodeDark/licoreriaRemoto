@@ -19,12 +19,13 @@ public class SerieComprobanteService implements ISerieComprobanteService {
         return repoSerieComprobante.findAll();
     }
     
-    public void guardar(SerieComprobante serieComprobante) {
-        repoSerieComprobante.save(serieComprobante);
+    
+    public SerieComprobante guardar(SerieComprobante serieComprobante) {
+        return repoSerieComprobante.save(serieComprobante);
     }
     
-    public void modificar(SerieComprobante serieComprobante) {
-        repoSerieComprobante.save(serieComprobante);
+    public SerieComprobante modificar(SerieComprobante serieComprobante) {
+        return repoSerieComprobante.save(serieComprobante);
     }
     
     public Optional<SerieComprobante> buscarId(Integer idSerie) {

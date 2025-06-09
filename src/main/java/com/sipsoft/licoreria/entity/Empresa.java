@@ -75,6 +75,9 @@ public class Empresa {
     }    public void setEstadoEmpresa(Integer estadoEmpresa) {
         this.estadoEmpresa = estadoEmpresa;
     }
+    public Empresa(Integer id) {
+    this.idEmpresa = id;
+}
 
     @PrePersist
     public void prePersist() {

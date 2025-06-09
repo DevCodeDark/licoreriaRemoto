@@ -26,12 +26,12 @@ public class SerieComprobante {
     private Integer estadoSerie = 1;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idTipoComprobante", insertable = false, updatable = false)
+    @JoinColumn(name = "idTipoComprobante")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private TipoComprobante tipoComprobante;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idEmpresa", insertable = false, updatable = false)
+    @JoinColumn(name = "idEmpresa")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Empresa empresa;
 

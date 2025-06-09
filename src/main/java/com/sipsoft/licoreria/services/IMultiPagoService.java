@@ -7,8 +7,8 @@ import com.sipsoft.licoreria.entity.MultiPago;
 
 public interface IMultiPagoService {
     List<MultiPago> bucarTodos();
-    void guardar(MultiPago multiPago);
-    void modificar(MultiPago multiPago);
+    MultiPago guardar(MultiPago multiPago);
+    MultiPago modificar(MultiPago multiPago);
     Optional<MultiPago> buscarId(Integer idMultiPago);
     void eliminar(Integer idMultiPago);
 }

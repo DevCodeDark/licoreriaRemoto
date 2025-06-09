@@ -64,7 +64,7 @@ public class TipoPago {
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
-
+    public TipoPago(Integer id) { this.idTipoPago = id; }
     @Override
     public String toString() {
         return "TipoPago [idTipoPago=" + idTipoPago + ", descripcionPago=" + descripcionPago + ", estadoTipoPago="
