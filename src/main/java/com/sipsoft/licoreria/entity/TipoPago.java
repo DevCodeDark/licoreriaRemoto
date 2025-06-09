@@ -33,6 +33,10 @@ public class TipoPago {
     public TipoPago() {
     }
 
+    public TipoPago(Integer id) {
+        this.idTipoPago = id;
+    }
+
     public Integer getIdTipoPago() {
         return idTipoPago;
     }

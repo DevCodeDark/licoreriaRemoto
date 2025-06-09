@@ -49,6 +49,10 @@ public class Caja {
     public Caja() {
     }
 
+    public Caja(Integer id) {
+        this.idCaja = id;
+    }
+
     public Integer getIdCaja() {
         return idCaja;
     }

@@ -35,6 +35,13 @@ public class DeudaProveedor {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Compra idCompra;
 
+    public DeudaProveedor() {
+    }
+
+    public DeudaProveedor(Integer id) {
+        this.idDeuda = id;
+    }
+
     public Integer getIdDeuda() {
         return idDeuda;
     }
@@ -98,5 +105,6 @@ public class DeudaProveedor {
                 + estadoDeuda + ", idCompra=" + idCompra + "]";
     }
 
+    
     
 }

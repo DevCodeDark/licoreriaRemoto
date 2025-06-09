@@ -55,6 +55,10 @@ public class Usuario {
     public Usuario() {
     }
 
+    public Usuario(Integer id) {
+        this.idUsuario = id;
+    }
+
     public Integer getIdUsuario() {
         return idUsuario;
     }
