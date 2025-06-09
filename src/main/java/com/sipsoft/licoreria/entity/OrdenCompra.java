@@ -24,8 +24,6 @@ public class OrdenCompra {
     private LocalDateTime fechaRegistro;
     private LocalDateTime fechaRespuesta;
     private String observaciones;
-
-    // --- CORRECCIÓN AQUÍ ---
     private Integer idEmpresa;
     private Integer idProveedor;
     private Integer idTipoPago;
@@ -48,7 +46,7 @@ public class OrdenCompra {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private TipoPago tipoPago;
 
-    // --- Constructores, Getters y Setters para todos los campos ---
+    // --- Constructores, Getters y Setters ---
     public OrdenCompra() {}
 
     public Integer getIdOrden() {
