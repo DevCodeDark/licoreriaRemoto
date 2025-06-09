@@ -42,6 +42,9 @@ public class Lote {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Almacen idAlmacen;
 
+    public Lote() {
+    }
+
     public Lote(Integer id){
         this.idLote = id;
     }
