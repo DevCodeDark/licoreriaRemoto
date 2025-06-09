@@ -1,4 +1,4 @@
-package com.sipsoft.licoreria.entity;
+package com.sipsoft.licoreria.dto;
 
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
@@ -16,7 +16,8 @@ import jakarta.persistence.Table;
 @Where(clause = "estadoCliente = 1")
 public class ClienteDTO {
     @Id
-    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)private Integer idCliente;
+    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
+    private Integer idCliente;
     private String numDocumento;
     private String razonSocial;
     private String nombreCliente;

@@ -26,12 +26,9 @@ public class Categoria {
     private Integer estadoCategoria = 1;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idEmpresa", insertable = false, updatable = false)
+    @JoinColumn(name = "idEmpresa")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Empresa empresa;
-
-    public Categoria() {
-    }
+    private Empresa idEmpresa;
 
     public Integer getIdCategoria() {
         return idCategoria;
@@ -57,17 +54,17 @@ public class Categoria {
         this.estadoCategoria = estadoCategoria;
     }
 
-    public Empresa getEmpresa() {
-        return empresa;
+    public Empresa getIdEmpresa() {
+        return idEmpresa;
     }
 
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
+    public void setIdEmpresa(Empresa idEmpresa) {
+        this.idEmpresa = idEmpresa;
     }
 
     @Override
     public String toString() {
         return "Categoria [idCategoria=" + idCategoria + ", nombreCategoria=" + nombreCategoria + ", estadoCategoria="
-                + estadoCategoria + ", empresa=" + empresa + "]";
+                + estadoCategoria + ", idEmpresa=" + idEmpresa + "]";
     }
 }
