@@ -19,12 +19,12 @@ public class PermisoService implements IPermisoService {
         return repoPermiso.findAll();
     }
     
-    public void guardar(Permiso permiso) {
-        repoPermiso.save(permiso);
+    public Permiso guardar(Permiso permiso) {
+        return repoPermiso.save(permiso);
     }
     
-    public void modificar(Permiso permiso) {
-        repoPermiso.save(permiso);
+    public Permiso modificar(Permiso permiso) {
+        return repoPermiso.save(permiso);
     }
     
     public Optional<Permiso> buscarId(Integer idPermiso) {

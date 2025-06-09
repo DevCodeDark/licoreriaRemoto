@@ -19,12 +19,12 @@ public class TrasladoService implements ITrasladoService {
         return repoTraslado.findAll();
     }
     
-    public void guardar(Traslado traslado) {
-        repoTraslado.save(traslado);
+    public Traslado guardar(Traslado traslado) {
+        return repoTraslado.save(traslado);
     }
     
-    public void modificar(Traslado traslado) {
-        repoTraslado.save(traslado);
+    public Traslado modificar(Traslado traslado) {
+        return repoTraslado.save(traslado);
     }
     
     public Optional<Traslado> buscarId(Integer idTraslado) {

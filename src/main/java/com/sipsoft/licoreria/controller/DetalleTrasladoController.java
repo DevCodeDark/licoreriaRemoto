@@ -63,8 +63,10 @@ public class DetalleTrasladoController {
         detalleTraslado.setIdDetalleTraslado(dto.getIdDetalleTraslado());
         detalleTraslado.setCantidadTraslado(dto.getCantidadTraslado());
 
-        detalleTraslado.setIdTraslado(new Traslado(dto.getIdTraslado()));
-        detalleTraslado.setIdLote(new Lote(dto.getIdLote()));
+        Traslado translado = repoTraslado.findById(dto.getIdTraslado()).orElse(null);
+        Lote lote = repoLote.findById(dto.getIdLote()).orElse(null);
+        detalleTraslado.setIdTraslado(translado);
+        detalleTraslado.setIdLote(lote);
 
         return ResponseEntity.ok(serviceDetalleTraslado.modificar(detalleTraslado));
     }

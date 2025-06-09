@@ -27,9 +27,9 @@ public class UnidadMedida {
     private Integer estadoUnidadMedida = 1;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idEmpresa", insertable = false, updatable = false)
+    @JoinColumn(name = "idEmpresa")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Empresa empresa;
+    private Empresa idEmpresa;
 
     public UnidadMedida() {
     }
@@ -66,18 +66,18 @@ public class UnidadMedida {
         this.estadoUnidadMedida = estadoUnidadMedida;
     }
 
-    public Empresa getEmpresa() {
-        return empresa;
+    public Empresa getIdEmpresa() {
+        return idEmpresa;
     }
 
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
+    public void setIdEmpresa(Empresa idEmpresa) {
+        this.idEmpresa = idEmpresa;
     }
 
     @Override
     public String toString() {
         return "UnidadMedida [idUnidadMedida=" + idUnidadMedida + ", nombreUnidadMedida=" + nombreUnidadMedida
                 + ", abreviaturaUnidadMedida=" + abreviaturaUnidadMedida + ", estadoUnidadMedida=" + estadoUnidadMedida
-                + ", empresa=" + empresa + "]";
+                + ", idEmpresa=" + idEmpresa + "]";
     }
 }

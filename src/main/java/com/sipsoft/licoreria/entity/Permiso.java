@@ -3,6 +3,7 @@ package com.sipsoft.licoreria.entity;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
@@ -23,13 +24,16 @@ public class Permiso {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPermiso;
     private Integer estadoPermiso = 1;
-    private String descripcion;
+    private Integer idRol;
+    private Integer idModulo;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idRol", insertable = false, updatable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Rol rol;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idModulo", insertable = false, updatable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -54,14 +58,6 @@ public class Permiso {
         this.estadoPermiso = estadoPermiso;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public Rol getRol() {
         return rol;
     }
@@ -78,9 +74,25 @@ public class Permiso {
         this.modulo = modulo;
     }
 
+    public Integer getIdRol() {
+        return idRol;
+    }
+
+    public void setIdRol(Integer idRol) {
+        this.idRol = idRol;
+    }
+
+    public Integer getIdModulo() {
+        return idModulo;
+    }
+
+    public void setIdModulo(Integer idModulo) {
+        this.idModulo = idModulo;
+    }
+
     @Override
     public String toString() {
-        return "Permiso [idPermiso=" + idPermiso + ", estadoPermiso=" + estadoPermiso + ", descripcion=" + descripcion
-                + ", rol=" + rol + ", modulo=" + modulo + "]";
+        return "Permiso [idPermiso=" + idPermiso + ", estadoPermiso=" + estadoPermiso + ", idRol=" + idRol
+                + ", idModulo=" + idModulo + "]";
     }
 }
