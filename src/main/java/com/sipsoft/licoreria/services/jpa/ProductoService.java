@@ -19,12 +19,12 @@ public class ProductoService implements IProductoService {
         return repoProducto.findAll();
     }
     
-    public void guardar(Producto producto) {
-        repoProducto.save(producto);
+    public Producto guardar(Producto producto) {
+        return repoProducto.save(producto);
     }
     
-    public void modificar(Producto producto) {
-        repoProducto.save(producto);
+    public Producto modificar(Producto producto) {
+        return repoProducto.save(producto);
     }
     
     public Optional<Producto> buscarId(Integer idProducto) {
