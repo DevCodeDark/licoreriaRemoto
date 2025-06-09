@@ -17,11 +17,13 @@ public class AlmacenesService implements IAlmacenesService {
     public List<Almacen> bucarTodos() {
         return repoAlmacenes.findAll();
     }
-    public void guardar(Almacen almacen) {
-        repoAlmacenes.save(almacen);
+    //AQUI
+    public Almacen guardar(Almacen almacen) {
+       return repoAlmacenes.save(almacen);
     }
-    public void modificar(Almacen almacen) {
-        repoAlmacenes.save(almacen);
+    //AQUI
+    public Almacen modificar(Almacen almacen) {
+        return repoAlmacenes.save(almacen);
     }
     public Optional<Almacen> buscarId(Integer idAlmacen) {
         return repoAlmacenes.findById(idAlmacen);

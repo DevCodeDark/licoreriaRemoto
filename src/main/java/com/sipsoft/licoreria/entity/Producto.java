@@ -48,6 +48,10 @@ public class Producto {
     public Producto() {
     }
 
+    public Producto(Integer id){
+        this.idProducto = id;
+    } 
+
     public Integer getIdProducto() {
         return idProducto;
     }

@@ -18,6 +18,10 @@ public class TipoNotificaciones {
     public TipoNotificaciones() {
     }
 
+    public TipoNotificaciones(Integer id) {
+        this.idTipoNotificacion = id;
+    }
+
     public Integer getIdTipoNotificacion() {
         return idTipoNotificacion;
     }

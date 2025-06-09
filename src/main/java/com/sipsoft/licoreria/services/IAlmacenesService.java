@@ -7,8 +7,8 @@ import com.sipsoft.licoreria.entity.Almacen;
 
 public interface IAlmacenesService {
     List<Almacen> bucarTodos();
-    void guardar(Almacen almacen);
-    void modificar(Almacen almacen);
+    Almacen guardar(Almacen almacen); //AQUI
+    Almacen modificar(Almacen almacen); //AQUI
     Optional<Almacen> buscarId(Integer idAlmacen);
     void eliminar(Integer idAlmacen);
 }
