@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sipsoft.licoreria.dto.NotificacionesDTO;
 import com.sipsoft.licoreria.entity.ContratoProveedor;
 import com.sipsoft.licoreria.entity.Notificaciones;
-import com.sipsoft.licoreria.entity.NotificacionesDTO;
 import com.sipsoft.licoreria.entity.Producto;
 import com.sipsoft.licoreria.entity.TipoNotificaciones;
 import com.sipsoft.licoreria.repository.ContratoProveedorRepository;

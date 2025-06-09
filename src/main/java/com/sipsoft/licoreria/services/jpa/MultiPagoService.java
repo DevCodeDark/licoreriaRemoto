@@ -2,10 +2,8 @@ package com.sipsoft.licoreria.services.jpa;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.sipsoft.licoreria.entity.MultiPago;
 import com.sipsoft.licoreria.repository.MultiPagoRepository;
 import com.sipsoft.licoreria.services.IMultiPagoService;

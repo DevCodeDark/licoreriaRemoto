@@ -1,4 +1,4 @@
-package com.sipsoft.licoreria.entity;
+package com.sipsoft.licoreria.dto;
 
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;

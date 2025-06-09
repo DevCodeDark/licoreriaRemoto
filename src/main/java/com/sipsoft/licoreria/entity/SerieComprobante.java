@@ -2,17 +2,9 @@ package com.sipsoft.licoreria.entity;
 
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "serie_comprobante")
@@ -24,19 +16,23 @@ public class SerieComprobante {
     private Integer idSerie;
     private String numSerie;
     private Integer estadoSerie = 1;
+    private Integer idTipoComprobante;
+    private Integer idEmpresa;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idTipoComprobante")
+    @JoinColumn(name = "idTipoComprobante", insertable = false, updatable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private TipoComprobante tipoComprobante;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idEmpresa")
+    @JoinColumn(name = "idEmpresa", insertable = false, updatable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Empresa empresa;
 
-    public SerieComprobante() {
-    }
+    // Getters y Setters
+    public SerieComprobante() {}
 
     public Integer getIdSerie() {
         return idSerie;
@@ -62,6 +58,22 @@ public class SerieComprobante {
         this.estadoSerie = estadoSerie;
     }
 
+    public Integer getIdTipoComprobante() {
+        return idTipoComprobante;
+    }
+
+    public void setIdTipoComprobante(Integer idTipoComprobante) {
+        this.idTipoComprobante = idTipoComprobante;
+    }
+
+    public Integer getIdEmpresa() {
+        return idEmpresa;
+    }
+
+    public void setIdEmpresa(Integer idEmpresa) {
+        this.idEmpresa = idEmpresa;
+    }
+
     public TipoComprobante getTipoComprobante() {
         return tipoComprobante;
     }
@@ -76,11 +88,5 @@ public class SerieComprobante {
 
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
-    }
-
-    @Override
-    public String toString() {
-        return "SerieComprobante [idSerie=" + idSerie + ", numSerie=" + numSerie + ", estadoSerie=" + estadoSerie
-                + ", tipoComprobante=" + tipoComprobante + ", empresa=" + empresa + "]";
     }
 }

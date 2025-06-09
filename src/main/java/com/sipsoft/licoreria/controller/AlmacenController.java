@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sipsoft.licoreria.dto.AlmacenDTO;
 import com.sipsoft.licoreria.entity.Almacen;
-import com.sipsoft.licoreria.entity.AlmacenDTO;
 import com.sipsoft.licoreria.entity.Sucursal;
 import com.sipsoft.licoreria.repository.SucursalRepository;
 import com.sipsoft.licoreria.services.IAlmacenesService;

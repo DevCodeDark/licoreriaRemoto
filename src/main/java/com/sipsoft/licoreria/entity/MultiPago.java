@@ -1,44 +1,33 @@
 package com.sipsoft.licoreria.entity;
 
-import java.math.BigDecimal;
-
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "multi_pago")
-@SQLDelete(sql = "UPDATE multi_pago SET estado = 0 WHERE idMultiPago = ?")
-@Where(clause = "estado = 1")
 public class MultiPago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idMultiPago;
-    private BigDecimal montoPagado;
-     private Integer estado = 1; 
+    private Float montoPagado;
+    private Integer idVenta;
+    private Integer idTipoPago;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idVenta")
+    @JoinColumn(name = "idVenta", insertable = false, updatable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Venta venta;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idTipoPago")
+    @JoinColumn(name = "idTipoPago", insertable = false, updatable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private TipoPago tipoPago;
-
-    public MultiPago() {
-    }
+    
+    // Getters y Setters
+    public MultiPago() {}
 
     public Integer getIdMultiPago() {
         return idMultiPago;
@@ -48,14 +37,29 @@ public class MultiPago {
         this.idMultiPago = idMultiPago;
     }
 
-    public BigDecimal getMontoPagado() {
+    public Float getMontoPagado() {
         return montoPagado;
     }
 
-    public void setMontoPagado(BigDecimal montoPagado) {
+    public void setMontoPagado(Float montoPagado) {
         this.montoPagado = montoPagado;
     }
-    
+
+    public Integer getIdVenta() {
+        return idVenta;
+    }
+
+    public void setIdVenta(Integer idVenta) {
+        this.idVenta = idVenta;
+    }
+
+    public Integer getIdTipoPago() {
+        return idTipoPago;
+    }
+
+    public void setIdTipoPago(Integer idTipoPago) {
+        this.idTipoPago = idTipoPago;
+    }
 
     public Venta getVenta() {
         return venta;
@@ -71,19 +75,5 @@ public class MultiPago {
 
     public void setTipoPago(TipoPago tipoPago) {
         this.tipoPago = tipoPago;
-    }
-
-    @Override
-    public String toString() {
-        return "MultiPago [idMultiPago=" + idMultiPago + ", montoPagado=" + montoPagado + ", venta=" + venta
-                + ", tipoPago=" + tipoPago + "]";
-    }
-
-    public Integer getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Integer estado) {
-        this.estado = estado;
     }
 }
