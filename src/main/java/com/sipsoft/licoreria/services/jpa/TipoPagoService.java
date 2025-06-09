@@ -19,12 +19,12 @@ public class TipoPagoService implements ITipoPagoService {
         return repoTipoPago.findAll();
     }
     
-    public void guardar(TipoPago tipoPago) {
-        repoTipoPago.save(tipoPago);
+    public TipoPago guardar(TipoPago tipoPago) {
+        return repoTipoPago.save(tipoPago);
     }
     
-    public void modificar(TipoPago tipoPago) {
-        repoTipoPago.save(tipoPago);
+    public TipoPago modificar(TipoPago tipoPago) {
+        return repoTipoPago.save(tipoPago);
     }
     
     public Optional<TipoPago> buscarId(Integer idTipoPago) {

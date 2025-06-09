@@ -7,8 +7,8 @@ import com.sipsoft.licoreria.entity.TipoPago;
 
 public interface ITipoPagoService {
     List<TipoPago> bucarTodos();
-    void guardar(TipoPago tipoPago);
-    void modificar(TipoPago tipoPago);
+    TipoPago guardar(TipoPago tipoPago);
+    TipoPago modificar(TipoPago tipoPago);
     Optional<TipoPago> buscarId(Integer idTipoPago);
     void eliminar(Integer idTipoPago);
 }
