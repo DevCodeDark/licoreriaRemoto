@@ -54,7 +54,7 @@ public class Venta {
     
     public Venta() {
     }
-
+    public Venta(Integer id) { this.idVenta = id; }
     public Integer getIdVenta() {
         return idVenta;
     }

@@ -7,8 +7,8 @@ import com.sipsoft.licoreria.entity.Caja;
 
 public interface ICajaService {
     List<Caja> bucarTodos();
-    void guardar(Caja caja);
-    void modificar(Caja caja);
+    Caja guardar(Caja caja);
+    Caja modificar(Caja caja);
     Optional<Caja> buscarId(Integer idCaja);
     void eliminar(Integer idCaja);
 }

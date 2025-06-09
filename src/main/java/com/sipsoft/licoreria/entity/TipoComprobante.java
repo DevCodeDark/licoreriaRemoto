@@ -47,6 +47,9 @@ public class TipoComprobante {
     public void setEstadoTipoComprobante(Integer estadoTipoComprobante) {
         this.estadoTipoComprobante = estadoTipoComprobante;
     }
+    public TipoComprobante(Integer id) {
+    this.idTipoComprobante = id;
+}
 
     @Override
     public String toString() {

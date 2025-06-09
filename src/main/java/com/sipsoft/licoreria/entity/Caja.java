@@ -25,24 +25,24 @@ public class Caja {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCaja;
     private String numCaja;
-    private Float montoInicialCaja;
-    private Float montoFinalCaja;
+    private Float montoinicialCaja;
+    private Float montofinalCaja;
     private LocalDateTime fechaaperturaCaja;
     private LocalDateTime fechacierreCaja;
     private Integer estadoCaja = 1;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idSucursal", insertable = false, updatable = false)
+    @JoinColumn(name = "idSucursal")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Sucursal sucursal;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idUsuarioApertura", insertable = false, updatable = false)
+    @JoinColumn(name = "idUsuarioApertura")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Usuario usuarioApertura;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idUsuarioCierre", insertable = false, updatable = false)
+    @JoinColumn(name = "idUsuarioCierre")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Usuario usuarioCierre;
 
@@ -69,20 +69,20 @@ public class Caja {
         this.numCaja = numCaja;
     }
 
-    public Float getMontoInicialCaja() {
-        return montoInicialCaja;
+    public Float getMontoinicialCaja() {
+        return montoinicialCaja;
     }
 
-    public void setMontoInicialCaja(Float montoInicialCaja) {
-        this.montoInicialCaja = montoInicialCaja;
+    public void setMontoinicialCaja(Float montoinicialCaja) {
+        this.montoinicialCaja = montoinicialCaja;
     }
 
-    public Float getMontoFinalCaja() {
-        return montoFinalCaja;
+    public Float getMontofinalCaja() {
+        return montofinalCaja;
     }
 
-    public void setMontoFinalCaja(Float montoFinalCaja) {
-        this.montoFinalCaja = montoFinalCaja;
+    public void setMontofinalCaja(Float montofinalCaja) {
+        this.montofinalCaja = montofinalCaja;
     }
 
     public LocalDateTime getFechaaperturaCaja() {
@@ -135,9 +135,11 @@ public class Caja {
 
     @Override
     public String toString() {
-        return "Caja [idCaja=" + idCaja + ", numCaja=" + numCaja + ", montoInicialCaja=" + montoInicialCaja
-                + ", montoFinalCaja=" + montoFinalCaja + ", fechaaperturaCaja=" + fechaaperturaCaja
+        return "Caja [idCaja=" + idCaja + ", numCaja=" + numCaja + ", montoinicialCaja=" + montoinicialCaja
+                + ", montofinalCaja=" + montofinalCaja + ", fechaaperturaCaja=" + fechaaperturaCaja
                 + ", fechacierreCaja=" + fechacierreCaja + ", estadoCaja=" + estadoCaja + ", sucursal=" + sucursal
                 + ", usuarioApertura=" + usuarioApertura + ", usuarioCierre=" + usuarioCierre + "]";
     }
+
+    
 }

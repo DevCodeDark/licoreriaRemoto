@@ -15,27 +15,27 @@ public class CajaService implements ICajaService {
     @Autowired
     private CajaRepository repoCaja;
     
-    @Override
+ 
     public List<Caja> bucarTodos() {
         return repoCaja.findAll();
     }
     
-    @Override
-    public void guardar(Caja caja) {
-        repoCaja.save(caja);
+    
+    public Caja guardar (Caja caja) {
+        return repoCaja.save(caja); // <<< CAMBIO: Devolver el resultado de save
     }
     
-    @Override
-    public void modificar(Caja caja) {
-        repoCaja.save(caja);
+   
+    public Caja modificar (Caja caja) {
+        return repoCaja.save(caja); // <<< CAMBIO: Devolver el resultado de save
     }
     
-    @Override
+
     public Optional<Caja> buscarId(Integer idCaja) {
         return repoCaja.findById(idCaja);
     }
     
-    @Override
+   
     public void eliminar(Integer idCaja) {
         repoCaja.deleteById(idCaja);
     }

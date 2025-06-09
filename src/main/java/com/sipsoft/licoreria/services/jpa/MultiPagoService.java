@@ -19,12 +19,12 @@ public class MultiPagoService implements IMultiPagoService {
         return repoMultiPago.findAll();
     }
     
-    public void guardar(MultiPago multiPago) {
-        repoMultiPago.save(multiPago);
+    public MultiPago guardar(MultiPago multiPago) {
+        return repoMultiPago.save(multiPago);
     }
     
-    public void modificar(MultiPago multiPago) {
-        repoMultiPago.save(multiPago);
+    public MultiPago modificar(MultiPago multiPago) {
+        return repoMultiPago.save(multiPago);
     }
     
     public Optional<MultiPago> buscarId(Integer idMultiPago) {
