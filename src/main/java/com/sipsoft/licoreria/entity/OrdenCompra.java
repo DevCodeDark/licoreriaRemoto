@@ -46,7 +46,7 @@ public class OrdenCompra {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private TipoPago tipoPago;
 
-    // --- Constructores, Getters y Setters para todos los campos ---
+    // --- Constructores, Getters y Setters ---
     public OrdenCompra() {}
 
     public Integer getIdOrden() {
