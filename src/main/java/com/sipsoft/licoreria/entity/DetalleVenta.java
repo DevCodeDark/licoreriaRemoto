@@ -25,12 +25,12 @@ public class DetalleVenta {
     private String tipoDescuento;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idVenta", insertable = false, updatable = false)
+    @JoinColumn(name = "idVenta")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Venta venta;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idLote", insertable = false, updatable = false)
+    @JoinColumn(name = "idLote")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Lote lote;
 

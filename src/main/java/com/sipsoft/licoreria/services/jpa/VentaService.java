@@ -19,12 +19,12 @@ public class VentaService implements IVentaService {
         return repoVenta.findAll();
     }
     
-    public void guardar(Venta venta) {
-        repoVenta.save(venta);
+    public Venta guardar(Venta venta) {
+        return repoVenta.save(venta);
     }
     
-    public void modificar(Venta venta) {
-        repoVenta.save(venta);
+    public Venta modificar(Venta venta) {
+        return repoVenta.save(venta);
     }
     
     public Optional<Venta> buscarId(Integer idVenta) {
