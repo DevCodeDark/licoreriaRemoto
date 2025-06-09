@@ -19,12 +19,12 @@ public class DetalleTrasladoService implements IDetalleTrasladoService {
         return repoDetalleTraslado.findAll();
     }
     
-    public void guardar(DetalleTraslado detalleTraslado) {
-        repoDetalleTraslado.save(detalleTraslado);
+    public DetalleTraslado guardar(DetalleTraslado detalleTraslado) {
+        return repoDetalleTraslado.save(detalleTraslado);
     }
     
-    public void modificar(DetalleTraslado detalleTraslado) {
-        repoDetalleTraslado.save(detalleTraslado);
+    public DetalleTraslado modificar(DetalleTraslado detalleTraslado) {
+        return repoDetalleTraslado.save(detalleTraslado);
     }
     
     public Optional<DetalleTraslado> buscarId(Integer idDetalleTraslado) {
