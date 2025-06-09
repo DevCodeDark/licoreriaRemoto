@@ -19,12 +19,12 @@ public class ContratoProveedorService implements IContratoProveedorService {
         return repoContratoProveedor.findAll();
     }
     
-    public void guardar(ContratoProveedor contratoProveedor) {
-        repoContratoProveedor.save(contratoProveedor);
+    public ContratoProveedor guardar(ContratoProveedor contratoProveedor) {
+        return repoContratoProveedor.save(contratoProveedor);
     }
     
-    public void modificar(ContratoProveedor contratoProveedor) {
-        repoContratoProveedor.save(contratoProveedor);
+    public ContratoProveedor modificar(ContratoProveedor contratoProveedor) {
+        return repoContratoProveedor.save(contratoProveedor);
     }
     
     public Optional<ContratoProveedor> buscarId(Integer idContratoProveedor) {

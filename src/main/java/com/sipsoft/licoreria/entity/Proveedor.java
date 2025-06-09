@@ -47,6 +47,10 @@ public class Proveedor {
         return idProveedor;
     }
 
+    public Proveedor(Integer id){
+        this.idProveedor = id;
+    } 
+
     public void setIdProveedor(Integer idProveedor) {
         this.idProveedor = idProveedor;
     }
