@@ -63,7 +63,8 @@ public class DeudaProveedorController {
         deudaProveedor.setMontoPagado(dto.getMontoPagado());
         deudaProveedor.setFechaLimiteDeuda(dto.getFechaLimiteDeuda());
 
-        deudaProveedor.setIdCompra(new Compra(dto.getIdCompra()));
+        Compra compra = repoCompra.findById(dto.getIdCompra()).orElse(null);
+        deudaProveedor.setIdCompra(compra);
 
         return ResponseEntity.ok(serviceDeudaProveedor.modificar(deudaProveedor));
     }
