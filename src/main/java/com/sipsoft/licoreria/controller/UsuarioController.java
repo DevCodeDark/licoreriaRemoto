@@ -27,6 +27,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
@@ -40,19 +41,18 @@ public class UsuarioController {
     private JwtUtil jwtUtil;
 
     @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
-
-    @GetMapping("/usuarios")
+    private BCryptPasswordEncoder passwordEncoder;    @GetMapping("/usuarios")
+    @Operation(summary = "Obtener todos los usuarios", security = @SecurityRequirement(name = "bearerAuth"))
     public List<Usuario> buscarTodos() {
         return serviceUsuario.bucarTodos();
     }
-    
-    /**
+      /**
      * Endpoint para crear un nuevo usuario.
      * @param usuarioDto DTO con la información del usuario a crear.
      * @return El usuario creado con sus credenciales generadas.
      */
     @PostMapping("/usuarios")
+    @Operation(summary = "Crear un nuevo usuario", security = @SecurityRequirement(name = "bearerAuth"))
     public Usuario guardar(@RequestBody UsuarioDTO usuarioDto) {
         Usuario usuario = new Usuario();
         
@@ -78,14 +78,13 @@ public class UsuarioController {
         usuario.setEstadoUsuario(1);
 
         return serviceUsuario.guardar(usuario);
-    }
-
-    /**
+    }    /**
      * Endpoint para modificar un usuario existente.
      * @param usuarioDto DTO con la información a actualizar.
      * @return El usuario modificado o un mensaje de error si no se encuentra.
      */
     @PutMapping("/usuarios")
+    @Operation(summary = "Modificar un usuario existente", security = @SecurityRequirement(name = "bearerAuth"))
     public ResponseEntity<?> modificar(@RequestBody UsuarioDTO usuarioDto) {
         if (usuarioDto.getIdUsuario() == null) {
             return ResponseEntity.badRequest().body("El idUsuario es requerido para modificar.");
@@ -114,14 +113,14 @@ public class UsuarioController {
         
         Usuario usuarioModificado = serviceUsuario.modificar(usuarioExistente);
         return ResponseEntity.ok(usuarioModificado);
-    }
-
-    @GetMapping("/usuarios/{idUsuario}")
+    }    @GetMapping("/usuarios/{idUsuario}")
+    @Operation(summary = "Buscar usuario por ID", security = @SecurityRequirement(name = "bearerAuth"))
     public Optional<Usuario> buscarId(@PathVariable("idUsuario") Integer idUsuario) {
         return serviceUsuario.buscarId(idUsuario);
     }
 
     @DeleteMapping("/usuarios/{idUsuario}")
+    @Operation(summary = "Eliminar usuario por ID", security = @SecurityRequirement(name = "bearerAuth"))
     public String eliminar(@PathVariable Integer idUsuario){
         serviceUsuario.eliminar(idUsuario);
         return "Usuario eliminado";
