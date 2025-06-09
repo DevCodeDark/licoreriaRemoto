@@ -25,6 +25,7 @@ public class Modulo {
     private String urlModulo;
     private String nombreModulo;
     private Integer estadoModulo = 1;
+    private Integer idEmpresa;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idEmpresa", insertable = false, updatable = false)
@@ -74,9 +75,17 @@ public class Modulo {
         this.empresa = empresa;
     }
 
+    public Integer getIdEmpresa() {
+        return idEmpresa;
+    }
+
+    public void setIdEmpresa(Integer idEmpresa) {
+        this.idEmpresa = idEmpresa;
+    }
+
     @Override
     public String toString() {
         return "Modulo [idModulo=" + idModulo + ", urlModulo=" + urlModulo + ", nombreModulo=" + nombreModulo
-                + ", estadoModulo=" + estadoModulo + ", empresa=" + empresa + "]";
+                + ", estadoModulo=" + estadoModulo + ", empresa=" + empresa + ", idEmpresa=" + idEmpresa + "]";
     }
 }
