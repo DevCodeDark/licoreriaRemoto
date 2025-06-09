@@ -7,8 +7,8 @@ import com.sipsoft.licoreria.entity.Rol;
 
 public interface IRolService {
     List<Rol> bucarTodos();
-    void guardar(Rol rol);
-    void modificar(Rol rol);
+    Rol guardar(Rol rol); // Cambiado de void a Rol
+    Rol modificar(Rol rol); // Cambiado de void a Rol
     Optional<Rol> buscarId(Integer idRol);
     void eliminar(Integer idRol);
 }
