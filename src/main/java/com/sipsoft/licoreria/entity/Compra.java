@@ -58,6 +58,10 @@ public class Compra {
     public Compra() {
     }
 
+    public Compra(Integer id){
+        this.idCompra = id;
+    }
+
     public Integer getIdCompra() {
         return idCompra;
     }
@@ -178,4 +182,6 @@ public class Compra {
                 + ", fechaRegistro=" + fechaRegistro + ", proveedor=" + proveedor + ", ordenCompra=" + ordenCompra
                 + ", empresa=" + empresa + ", tipoPago=" + tipoPago + "]";
     }
+
+    
 }

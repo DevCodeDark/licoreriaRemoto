@@ -7,8 +7,8 @@ import com.sipsoft.licoreria.entity.DeudaProveedor;
 
 public interface IDeudaProveedorService {
     List<DeudaProveedor> bucarTodos();
-    void guardar(DeudaProveedor deudaProveedor);
-    void modificar(DeudaProveedor deudaProveedor);
+    DeudaProveedor guardar(DeudaProveedor deudaProveedor);
+    DeudaProveedor modificar(DeudaProveedor deudaProveedor);
     Optional<DeudaProveedor> buscarId(Integer idDeuda);
     void eliminar(Integer idDeuda);
 }

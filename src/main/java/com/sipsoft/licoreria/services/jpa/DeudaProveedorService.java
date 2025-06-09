@@ -19,12 +19,12 @@ public class DeudaProveedorService implements IDeudaProveedorService {
         return repoDeudaProveedor.findAll();
     }
     
-    public void guardar(DeudaProveedor deudaProveedor) {
-        repoDeudaProveedor.save(deudaProveedor);
+    public DeudaProveedor guardar(DeudaProveedor deudaProveedor) {
+        return repoDeudaProveedor.save(deudaProveedor);
     }
     
-    public void modificar(DeudaProveedor deudaProveedor) {
-        repoDeudaProveedor.save(deudaProveedor);
+    public DeudaProveedor modificar(DeudaProveedor deudaProveedor) {
+        return repoDeudaProveedor.save(deudaProveedor);
     }
     
     public Optional<DeudaProveedor> buscarId(Integer idDeuda) {
