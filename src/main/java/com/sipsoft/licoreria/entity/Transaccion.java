@@ -48,6 +48,10 @@ public class Transaccion {
     public Transaccion() {
     }
 
+    public Transaccion(Integer id) {
+        this.idTransaccion = id;
+    }
+
     public Integer getIdTransaccion() {
         return idTransaccion;
     }
