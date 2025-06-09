@@ -7,8 +7,8 @@ import com.sipsoft.licoreria.entity.Usuario;
 
 public interface IUsuarioService {
     List<Usuario> bucarTodos();
-    void guardar(Usuario usuario);
-    void modificar(Usuario usuario);
+    Usuario guardar(Usuario usuario); // Cambiado de void a Usuario
+    Usuario modificar(Usuario usuario); // Cambiado de void a Usuario
     Optional<Usuario> buscarId(Integer idUsuario);
     void eliminar(Integer idUsuario);
 }
