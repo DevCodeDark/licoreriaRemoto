@@ -33,25 +33,25 @@ public class Venta {
     private String tipoDocumento;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idCliente", insertable = false, updatable = false)
+    @JoinColumn(name = "idCliente")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Cliente cliente;
+    private Cliente idCliente;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idCaja", insertable = false, updatable = false)
+    @JoinColumn(name = "idCaja")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Caja caja;
+    private Caja idCaja;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idTransaccion", insertable = false, updatable = false)
+    @JoinColumn(name = "idTransaccion")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Transaccion transaccion;
+    private Transaccion idTransaccion;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idUsuario", insertable = false, updatable = false)
+    @JoinColumn(name = "idUsuario")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Usuario usuario;
-
+    private Usuario idUsuario;
+    
     public Venta() {
     }
 
@@ -119,43 +119,43 @@ public class Venta {
         this.tipoDocumento = tipoDocumento;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Cliente getIdCliente() {
+        return idCliente;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setIdCliente(Cliente idCliente) {
+        this.idCliente = idCliente;
     }
 
-    public Caja getCaja() {
-        return caja;
+    public Caja getIdCaja() {
+        return idCaja;
     }
 
-    public void setCaja(Caja caja) {
-        this.caja = caja;
+    public void setIdCaja(Caja idCaja) {
+        this.idCaja = idCaja;
     }
 
-    public Transaccion getTransaccion() {
-        return transaccion;
+    public Transaccion getIdTransaccion() {
+        return idTransaccion;
     }
 
-    public void setTransaccion(Transaccion transaccion) {
-        this.transaccion = transaccion;
+    public void setIdTransaccion(Transaccion idTransaccion) {
+        this.idTransaccion = idTransaccion;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Usuario getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setIdUsuario(Usuario idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     @Override
     public String toString() {
         return "Venta [idVenta=" + idVenta + ", fechaVenta=" + fechaVenta + ", montoTotalVenta=" + montoTotalVenta
                 + ", fechaAnulacion=" + fechaAnulacion + ", direccion=" + direccion + ", referencia=" + referencia
-                + ", estadoVenta=" + estadoVenta + ", tipoDocumento=" + tipoDocumento + ", cliente=" + cliente
-                + ", caja=" + caja + ", transaccion=" + transaccion + ", usuario=" + usuario + "]";
+                + ", estadoVenta=" + estadoVenta + ", tipoDocumento=" + tipoDocumento + ", idCliente=" + idCliente
+                + ", idCaja=" + idCaja + ", idTransaccion=" + idTransaccion + ", idUsuario=" + idUsuario + "]";
     }
 }
