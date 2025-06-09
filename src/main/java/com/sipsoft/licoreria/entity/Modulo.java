@@ -86,6 +86,6 @@ public class Modulo {
     @Override
     public String toString() {
         return "Modulo [idModulo=" + idModulo + ", urlModulo=" + urlModulo + ", nombreModulo=" + nombreModulo
-                + ", estadoModulo=" + estadoModulo + ", empresa=" + empresa + ", idEmpresa=" + idEmpresa + "]";
+                + ", estadoModulo=" + estadoModulo + ", empresa=" + empresa + "]";
     }
 }
