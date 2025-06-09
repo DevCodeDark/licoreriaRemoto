@@ -74,8 +74,6 @@ public class Permiso {
         this.modulo = modulo;
     }
 
-    // --- CORRECCIÓN AQUÍ ---
-    // Se agregan Getters y Setters para los nuevos campos.
     public Integer getIdRol() {
         return idRol;
     }
