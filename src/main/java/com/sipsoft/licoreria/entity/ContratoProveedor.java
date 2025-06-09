@@ -18,8 +18,8 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "contrato_proveedor")
-@SQLDelete(sql = "UPDATE contrato_proveedor SET estadoContrato = 0 WHERE idContratoProveedor = ?")
-@Where(clause = "estadoContrato = 1")
+@SQLDelete(sql = "UPDATE contrato_proveedor SET estadoContratoProveedor = 0 WHERE idContratoProveedor = ?")
+@Where(clause = "estadoContratoProveedor = 1")
 public class ContratoProveedor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,12 +31,9 @@ public class ContratoProveedor {
     private Integer estadoContratoProveedor = 1;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idProveedor", insertable = false, updatable = false)
+    @JoinColumn(name = "idProveedor")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Proveedor proveedor;
-
-    public ContratoProveedor() {
-    }
+    private Proveedor idProveedor;
 
     public Integer getIdContratoProveedor() {
         return idContratoProveedor;
@@ -86,12 +83,12 @@ public class ContratoProveedor {
         this.estadoContratoProveedor = estadoContratoProveedor;
     }
 
-    public Proveedor getProveedor() {
-        return proveedor;
+    public Proveedor getIdProveedor() {
+        return idProveedor;
     }
 
-    public void setProveedor(Proveedor proveedor) {
-        this.proveedor = proveedor;
+    public void setIdProveedor(Proveedor idProveedor) {
+        this.idProveedor = idProveedor;
     }
 
     @Override
@@ -99,6 +96,8 @@ public class ContratoProveedor {
         return "ContratoProveedor [idContratoProveedor=" + idContratoProveedor + ", rutaPdfContratoProveedor="
                 + rutaPdfContratoProveedor + ", fechaInicioContratoProveedor=" + fechaInicioContratoProveedor
                 + ", fechaFinContratoProveedor=" + fechaFinContratoProveedor + ", detallesContrato=" + detallesContrato
-                + ", estadoContratoProveedor=" + estadoContratoProveedor + ", proveedor=" + proveedor + "]";
+                + ", estadoContratoProveedor=" + estadoContratoProveedor + ", idProveedor=" + idProveedor + "]";
     }
+
+   
 }
