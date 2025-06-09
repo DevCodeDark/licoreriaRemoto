@@ -23,8 +23,15 @@ import com.sipsoft.licoreria.entity.Usuario;
 import com.sipsoft.licoreria.security.JwtUtil;
 import com.sipsoft.licoreria.services.IUsuarioService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/sipsoft")
+@Tag(name = "Autenticación y Usuarios", description = "Endpoints para la gestión de usuarios y la obtención de tokens de acceso.")
 public class UsuarioController {
     @Autowired
     private IUsuarioService serviceUsuario;
@@ -119,7 +126,38 @@ public class UsuarioController {
         serviceUsuario.eliminar(idUsuario);
         return "Usuario eliminado";
     }
-
+        // --- ANOTACIÓN ACTUALIZADA ---
+    @Operation(
+        summary = "Genera un Token de Autenticación (JWT)",
+        description = "Este endpoint autentica a un usuario y devuelve un token JWT para ser usado en las cabeceras de las demás peticiones. \n\n" +
+                      "**Para obtener un token, se deben seguir los siguientes pasos:**\n" +
+                      "1. **Crear una Empresa:** Realizar un `POST` a `/sipsoft/empresas`.\n" +
+                      "2. **Crear un Rol:** Realizar un `POST` a `/sipsoft/roles`, asociándolo al `idEmpresa` recién creado.\n" +
+                      "3. **Crear un Usuario:** Realizar un `POST` a `/sipsoft/usuarios`, asociándolo al `idRol` y `idEmpresa` correspondientes. El sistema generará automáticamente un `cliente_id` y una `llave_secreta`.\n" +
+                      "4. **Solicitar el Token:** Usar el `cliente_id` y la `llave_secreta` generados en el paso anterior para hacer `POST` a este endpoint y obtener el token.",
+        // Se añade la definición del Request Body
+        requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+            description = "Credenciales del usuario para la generación del token.",
+            required = true,
+            content = @Content(
+                mediaType = "application/json",
+                // Se define el esquema del JSON
+                schema = @Schema(
+                    type = "object",
+                    example = "{\"cliente_id\": \"string\", \"llave_secreta\": \"string\"}"
+                ),
+                // Se provee un ejemplo claro
+                examples = {
+                    @ExampleObject(
+                        name = "Ejemplo de Petición",
+                        summary = "Formato del cuerpo de la solicitud",
+                        value = "{\n  \"cliente_id\": \"5f4e3d2c1b0a...\",\n  \"llave_secreta\": \"...\"\n}"
+                    )
+                }
+            )
+        )
+    )
+    
     @PostMapping("/token")
     public ResponseEntity<?> obtenerToken(@RequestBody Map<String, String> credenciales) {
         String clienteId = credenciales.get("cliente_id");
