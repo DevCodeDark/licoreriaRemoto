@@ -7,8 +7,8 @@ import com.sipsoft.licoreria.entity.Empresa;
 
 public interface IEmpresaService {
     List<Empresa> bucarTodos();
-    void guardar(Empresa empresa);
-    void modificar(Empresa empresa);
+    Empresa guardar(Empresa empresa);
+    Empresa modificar(Empresa empresa);
     Optional<Empresa> buscarId(Integer idEmpresa);
     void eliminar(Integer idEmpresa);
 }

@@ -19,12 +19,12 @@ public class EmpresaService implements IEmpresaService {
         return repoEmpresa.findAll();
     }
     
-    public void guardar(Empresa empresa) {
-        repoEmpresa.save(empresa);
+    public Empresa guardar(Empresa empresa) {
+        return repoEmpresa.save(empresa); // Devuelve la entidad guardada
     }
     
-    public void modificar(Empresa empresa) {
-        repoEmpresa.save(empresa);
+    public Empresa modificar(Empresa empresa) {
+        return repoEmpresa.save(empresa); // Devuelve la entidad actualizada
     }
     
     public Optional<Empresa> buscarId(Integer idEmpresa) {
