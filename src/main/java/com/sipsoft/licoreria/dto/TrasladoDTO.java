@@ -5,10 +5,11 @@ import java.time.LocalDateTime;
 public class TrasladoDTO {
     private Integer idTraslado;
     private LocalDateTime fechaTraslado;
-    private Integer estadoTraslado = 1;
+    private Integer estadoTraslado;
     private Integer idAlmacenOrigen;
     private Integer idAlmacenDestino;
 
+    // Getters y Setters
     public Integer getIdTraslado() { return idTraslado; }
     public void setIdTraslado(Integer idTraslado) { this.idTraslado = idTraslado; }
     public LocalDateTime getFechaTraslado() { return fechaTraslado; }
@@ -19,11 +20,4 @@ public class TrasladoDTO {
     public void setIdAlmacenOrigen(Integer idAlmacenOrigen) { this.idAlmacenOrigen = idAlmacenOrigen; }
     public Integer getIdAlmacenDestino() { return idAlmacenDestino; }
     public void setIdAlmacenDestino(Integer idAlmacenDestino) { this.idAlmacenDestino = idAlmacenDestino; }
-
-    @Override
-    public String toString() {
-        return "TrasladoDTO [idTraslado=" + idTraslado + ", fechaTraslado=" + fechaTraslado + ", estadoTraslado="
-                + estadoTraslado + ", idAlmacenOrigen=" + idAlmacenOrigen + ", idAlmacenDestino=" + idAlmacenDestino
-                + "]";
-    }
 }
