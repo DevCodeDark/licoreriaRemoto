@@ -1,28 +1,13 @@
 package com.sipsoft.licoreria.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
-
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.sipsoft.licoreria.entity.Venta;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import com.sipsoft.licoreria.dto.VentaDTO;
-import com.sipsoft.licoreria.entity.Cliente;
-import com.sipsoft.licoreria.entity.Caja;
-import com.sipsoft.licoreria.entity.Transaccion;
-import com.sipsoft.licoreria.entity.Usuario;
-import com.sipsoft.licoreria.repository.ClienteRepository;
-import com.sipsoft.licoreria.repository.CajaRepository;
-import com.sipsoft.licoreria.repository.TransaccionRepository;
-import com.sipsoft.licoreria.repository.UsuarioRepository;
+import com.sipsoft.licoreria.entity.Venta;
 import com.sipsoft.licoreria.services.IVentaService;
 
 @RestController
@@ -31,80 +16,86 @@ public class VentaController {
     @Autowired
     private IVentaService serviceVenta;
 
-    @Autowired
-    private ClienteRepository repoCliente;
-    @Autowired
-    private CajaRepository repoCaja;
-    @Autowired
-    private TransaccionRepository repoTransaccion;
-    @Autowired
-    private UsuarioRepository repoUsuario;
-
-
     @GetMapping("/ventas")
-    public List<Venta> buscarTodos() {
-        return serviceVenta.bucarTodos();
-    }
-    @PostMapping("/ventas")
-    public Venta guardar(@RequestBody VentaDTO dto) {
-        Venta venta = new Venta();
-        venta.setFechaVenta(dto.getFechaVenta());
-        venta.setMontoTotalVenta(dto.getMontoTotalVenta());
-        venta.setFechaAnulacion(dto.getFechaAnulacion());
-        venta.setDireccion(dto.getDireccion());
-        venta.setReferencia(dto.getReferencia());
-        venta.setEstadoVenta(dto.getEstadoVenta());
-        venta.setTipoDocumento(dto.getTipoDocumento());
-
-        Cliente cliente = repoCliente.findById(dto.getIdCliente()).orElse(null);
-        venta.setIdCliente(cliente);
-        Caja caja = repoCaja.findById(dto.getIdCaja()).orElse(null);
-        venta.setIdCaja(caja);
-        Transaccion transaccion = repoTransaccion.findById(dto.getIdTransaccion()).orElse(null);
-        venta.setIdTransaccion(transaccion);
-        Usuario usuario = repoUsuario.findById(dto.getIdUsuario()).orElse(null);
-        venta.setIdUsuario(usuario);
-
-        serviceVenta.guardar(venta);
-
-        // Ya no se guarda detalle ni se actualiza stock aquí
-        return venta;
-    }
-
-    @PutMapping("/ventas")
-    public Venta modificar(@RequestBody VentaDTO dto) {
-        Venta venta = new Venta();
-        venta.setIdVenta(dto.getIdVenta());
-        venta.setFechaVenta(dto.getFechaVenta());
-        venta.setMontoTotalVenta(dto.getMontoTotalVenta());
-        venta.setFechaAnulacion(dto.getFechaAnulacion());
-        venta.setDireccion(dto.getDireccion());
-        venta.setReferencia(dto.getReferencia());
-        venta.setEstadoVenta(dto.getEstadoVenta());
-        venta.setTipoDocumento(dto.getTipoDocumento());
-
-        Cliente cliente = repoCliente.findById(dto.getIdCliente()).orElse(null);
-        venta.setIdCliente(cliente);
-        Caja caja = repoCaja.findById(dto.getIdCaja()).orElse(null);
-        venta.setIdCaja(caja);
-        Transaccion transaccion = repoTransaccion.findById(dto.getIdTransaccion()).orElse(null);
-        venta.setIdTransaccion(transaccion);
-        Usuario usuario = repoUsuario.findById(dto.getIdUsuario()).orElse(null);
-        venta.setIdUsuario(usuario);
-
-        serviceVenta.modificar(venta);
-
-        return venta;
+    public List<VentaDTO> buscarTodos() {
+        return serviceVenta.bucarTodos().stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/ventas/{idVenta}")
-    public Optional<Venta> buscarId(@PathVariable("idVenta") Integer idVenta) {
-        return serviceVenta.buscarId(idVenta);
+    public ResponseEntity<VentaDTO> buscarId(@PathVariable("idVenta") Integer idVenta) {
+        return serviceVenta.buscarId(idVenta)
+                .map(venta -> ResponseEntity.ok(convertToDto(venta)))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping("/ventas")
+    public VentaDTO guardar(@RequestBody VentaDTO dto) {
+        Venta venta = new Venta();
+        mapDtoToEntity(dto, venta);
+        
+        venta.setFechaVenta(LocalDateTime.now());
+        venta.setEstadoVenta(1); // Estado activo por defecto
+
+        Venta savedVenta = serviceVenta.guardar(venta);
+        return convertToDto(savedVenta);
+    }
+
+    @PutMapping("/ventas")
+    public ResponseEntity<VentaDTO> modificar(@RequestBody VentaDTO dto) {
+        if (dto.getIdVenta() == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        return serviceVenta.buscarId(dto.getIdVenta())
+                .map(ventaExistente -> {
+                    mapDtoToEntity(dto, ventaExistente);
+
+                    if (dto.getEstadoVenta() != null) {
+                        ventaExistente.setEstadoVenta(dto.getEstadoVenta());
+                    }
+                     if (dto.getFechaAnulacion() != null) {
+                        ventaExistente.setFechaAnulacion(dto.getFechaAnulacion());
+                    }
+                    
+                    Venta updatedVenta = serviceVenta.modificar(ventaExistente);
+                    return ResponseEntity.ok(convertToDto(updatedVenta));
+                })
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/ventas/{idVenta}")
     public String eliminar(@PathVariable Integer idVenta){
         serviceVenta.eliminar(idVenta);
         return "Venta eliminada";
+    }
+
+    // --- Métodos de Ayuda ---
+
+    private VentaDTO convertToDto(Venta entity) {
+        VentaDTO dto = new VentaDTO();
+        dto.setIdVenta(entity.getIdVenta());
+        dto.setFechaVenta(entity.getFechaVenta());
+        dto.setMontoTotalVenta(entity.getMontoTotalVenta());
+        dto.setFechaAnulacion(entity.getFechaAnulacion());
+        dto.setDireccion(entity.getDireccion());
+        dto.setReferencia(entity.getReferencia());
+        dto.setEstadoVenta(entity.getEstadoVenta());
+        dto.setTipoDocumento(entity.getTipoDocumento());
+        dto.setIdCliente(entity.getIdCliente());
+        dto.setIdCaja(entity.getIdCaja());
+        dto.setIdUsuario(entity.getIdUsuario());
+        return dto;
+    }
+
+    private void mapDtoToEntity(VentaDTO dto, Venta entity) {
+        entity.setMontoTotalVenta(dto.getMontoTotalVenta());
+        entity.setDireccion(dto.getDireccion());
+        entity.setReferencia(dto.getReferencia());
+        entity.setTipoDocumento(dto.getTipoDocumento());
+        entity.setIdCliente(dto.getIdCliente());
+        entity.setIdCaja(dto.getIdCaja());
+        entity.setIdUsuario(dto.getIdUsuario());
     }
 }
