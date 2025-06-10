@@ -31,6 +31,7 @@ public class CompraController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+
     @PostMapping("/compras")
     public CompraDTO guardar(@RequestBody CompraDTO compraDto) {
         Compra compra = new Compra();
@@ -42,6 +43,7 @@ public class CompraController {
         compra.setFechaCompra(now.toLocalDate());
         compra.setFechaRegistro(now);
         compra.setFechaActualizacion(now);
+        compra.setEstadoCompra(1);
 
         Compra savedCompra = serviceCompra.guardar(compra);
         return convertToDto(savedCompra);
@@ -58,7 +60,11 @@ public class CompraController {
                     mapDtoToEntityForUpdate(compraDto, compraExistente);
                     // Actualizar fecha de modificación
                     compraExistente.setFechaActualizacion(LocalDateTime.now());
-                    
+
+                    if (compraDto.getEstadoCompra() != null) {
+                        compraExistente.setEstadoCompra(compraDto.getEstadoCompra());
+                    }
+
                     Compra updatedCompra = serviceCompra.modificar(compraExistente);
                     return ResponseEntity.ok(convertToDto(updatedCompra));
                 })
@@ -96,7 +102,7 @@ public class CompraController {
         entity.setGuiaRemisionCompra(dto.getGuiaRemisionCompra());
         entity.setPrecioTotalCompra(dto.getPrecioTotalCompra());
         entity.setIgv(dto.getIgv());
-        entity.setEstadoCompra(dto.getEstadoCompra());
+        // Se elimina la asignación de 'estadoCompra' desde el DTO
         entity.setTipoCompra(dto.getTipoCompra());
         entity.setActivo(dto.getActivo());
         entity.setIdProveedor(dto.getIdProveedor());

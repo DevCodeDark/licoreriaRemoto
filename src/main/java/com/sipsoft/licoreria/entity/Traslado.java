@@ -1,20 +1,11 @@
 package com.sipsoft.licoreria.entity;
 
 import java.time.LocalDateTime;
-
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "traslado")
@@ -26,64 +17,36 @@ public class Traslado {
     private Integer idTraslado;
     private LocalDateTime fechaTraslado;
     private Integer estadoTraslado = 1;
+    private Integer idAlmacenOrigen;
+    private Integer idAlmacenDestino;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idAlmacenOrigen")
+    @JoinColumn(name = "idAlmacenOrigen", insertable = false, updatable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Almacen idAlmacenOrigen;
+    private Almacen almacenOrigen;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idAlmacenDestino")
+    @JoinColumn(name = "idAlmacenDestino", insertable = false, updatable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private Almacen idAlmacenDestino;
+    private Almacen almacenDestino;
 
-    public Traslado() {
-    }
+    // --- Constructores, Getters y Setters para todos los campos ---
+    public Traslado() {}
 
-    public Integer getIdTraslado() {
-        return idTraslado;
-    }
-
-    public void setIdTraslado(Integer idTraslado) {
-        this.idTraslado = idTraslado;
-    }
-
-    public LocalDateTime getFechaTraslado() {
-        return fechaTraslado;
-    }
-
-    public void setFechaTraslado(LocalDateTime fechaTraslado) {
-        this.fechaTraslado = fechaTraslado;
-    }
-
-    public Integer getEstadoTraslado() {
-        return estadoTraslado;
-    }
-
-    public void setEstadoTraslado(Integer estadoTraslado) {
-        this.estadoTraslado = estadoTraslado;
-    }
-
-    public Almacen getIdAlmacenOrigen() {
-        return idAlmacenOrigen;
-    }
-
-    public void setIdAlmacenOrigen(Almacen idAlmacenOrigen) {
-        this.idAlmacenOrigen = idAlmacenOrigen;
-    }
-
-    public Almacen getIdAlmacenDestino() {
-        return idAlmacenDestino;
-    }
-
-    public void setIdAlmacenDestino(Almacen idAlmacenDestino) {
-        this.idAlmacenDestino = idAlmacenDestino;
-    }
-
-    @Override
-    public String toString() {
-        return "Traslado [idTraslado=" + idTraslado + ", fechaTraslado=" + fechaTraslado + ", estadoTraslado="
-                + estadoTraslado + ", idAlmacenOrigen=" + idAlmacenOrigen + ", idAlmacenDestino=" + idAlmacenDestino
-                + "]";
-    }
+    public Integer getIdTraslado() { return idTraslado; }
+    public void setIdTraslado(Integer idTraslado) { this.idTraslado = idTraslado; }
+    public LocalDateTime getFechaTraslado() { return fechaTraslado; }
+    public void setFechaTraslado(LocalDateTime fechaTraslado) { this.fechaTraslado = fechaTraslado; }
+    public Integer getEstadoTraslado() { return estadoTraslado; }
+    public void setEstadoTraslado(Integer estadoTraslado) { this.estadoTraslado = estadoTraslado; }
+    public Integer getIdAlmacenOrigen() { return idAlmacenOrigen; }
+    public void setIdAlmacenOrigen(Integer idAlmacenOrigen) { this.idAlmacenOrigen = idAlmacenOrigen; }
+    public Integer getIdAlmacenDestino() { return idAlmacenDestino; }
+    public void setIdAlmacenDestino(Integer idAlmacenDestino) { this.idAlmacenDestino = idAlmacenDestino; }
+    public Almacen getAlmacenOrigen() { return almacenOrigen; }
+    public void setAlmacenOrigen(Almacen almacenOrigen) { this.almacenOrigen = almacenOrigen; }
+    public Almacen getAlmacenDestino() { return almacenDestino; }
+    public void setAlmacenDestino(Almacen almacenDestino) { this.almacenDestino = almacenDestino; }
 }
