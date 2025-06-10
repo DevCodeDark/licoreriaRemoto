@@ -19,13 +19,17 @@ import com.sipsoft.licoreria.dto.EmpresaDTO;
 import com.sipsoft.licoreria.entity.Empresa;
 import com.sipsoft.licoreria.services.IEmpresaService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/sipsoft")
+@Tag(name = "Empresas", description = "Gestión de empresas del sistema")
 public class EmpresaController {
     @Autowired
-    private IEmpresaService serviceEmpresa;
-
-    @GetMapping("/empresas")
+    private IEmpresaService serviceEmpresa;    @GetMapping("/empresas")
+    @Operation(summary = "Obtener todas las empresas", security = @SecurityRequirement(name = "bearerAuth"))
     public List<Empresa> buscarTodos() {
         return serviceEmpresa.bucarTodos();
     }
